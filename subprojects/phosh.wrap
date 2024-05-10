@@ -1,0 +1,6 @@
+[wrap-git]
+directory=phosh
+# FIXME: use main repo once !1431 landed
+url=https://gitlab.gnome.org/guidog/phosh.git
+revision=rs-introspection
+

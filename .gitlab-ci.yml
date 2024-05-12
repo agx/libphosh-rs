@@ -39,6 +39,7 @@ variables:
     - rustup default stable
     - git submodule update --checkout
     - meson subprojects download
+    - if [ -n "$UPSTREAM_BRANCH" ]; then cd subprojects/phosh && git fetch origin "$UPSTREAM_BRANCH" && git checkout FETCH_HEAD && git show HEAD && cd -; fi
     - cd subprojects/phosh && eatmydata apt -y --no-install-recommends build-dep . && cd -
 
 build:

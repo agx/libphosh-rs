@@ -13,6 +13,8 @@ mod wall_clock;
 pub use self::wall_clock::WallClock;
 
 pub(crate) mod traits {
+    pub use super::lockscreen::LockscreenExt;
+    pub use super::shell::ShellExt;
     pub use super::wall_clock::WallClockExt;
 }
 pub(crate) mod builders {

@@ -7,12 +7,13 @@ fn main() {
 
     let clock = phosh::WallClock::new();
     clock.set_default();
-    
-    let shell = phosh::Shell::default();
-				  
+
+    let shell = phosh::Shell::new();
+    shell.set_default();
+
     shell.connect_ready(|_| {
-	glib::g_message!("example", "Rusty shell ready")
+        glib::g_message!("example", "Rusty shell ready");
     });
-    
-    gtk::main();    
+
+    gtk::main();
 }

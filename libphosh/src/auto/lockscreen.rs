@@ -16,8 +16,11 @@ glib::wrapper! {
 }
 
 impl Lockscreen {
+        pub const NONE: Option<&'static Lockscreen> = None;
+    
+
     //#[doc(alias = "phosh_lockscreen_new")]
-    //pub fn new(layer_shell: /*Unimplemented*/Option<Basic: Pointer>, wl_output: /*Unimplemented*/Option<Basic: Pointer>, calls_manager: /*Ignored*/&CallsManager) -> Lockscreen {
+    //pub fn new(lockscreen_type: glib::types::Type, layer_shell: /*Unimplemented*/Option<Basic: Pointer>, wl_output: /*Unimplemented*/Option<Basic: Pointer>, calls_manager: /*Ignored*/&CallsManager) -> Lockscreen {
     //    unsafe { TODO: call ffi:phosh_lockscreen_new() }
     //}
 
@@ -29,48 +32,6 @@ impl Lockscreen {
                 LockscreenBuilder::new()
             }
         
-
-    //#[doc(alias = "phosh_lockscreen_get_page")]
-    //#[doc(alias = "get_page")]
-    //pub fn page(&self) -> /*Ignored*/LockscreenPage {
-    //    unsafe { TODO: call ffi:phosh_lockscreen_get_page() }
-    //}
-
-    //#[doc(alias = "phosh_lockscreen_set_page")]
-    //pub fn set_page(&self, page: /*Ignored*/LockscreenPage) {
-    //    unsafe { TODO: call ffi:phosh_lockscreen_set_page() }
-    //}
-
-    //#[doc(alias = "calls-manager")]
-    //pub fn calls_manager(&self) -> /*Ignored*/Option<CallsManager> {
-    //    ObjectExt::property(self, "calls-manager")
-    //}
-
-    #[doc(alias = "lockscreen-unlock")]
-    pub fn connect_lockscreen_unlock<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
-        unsafe extern "C" fn lockscreen_unlock_trampoline<F: Fn(&Lockscreen) + 'static>(this: *mut ffi::PhoshLockscreen, f: glib::ffi::gpointer) {
-            let f: &F = &*(f as *const F);
-            f(&from_glib_borrow(this))
-        }
-        unsafe {
-            let f: Box_<F> = Box_::new(f);
-            connect_raw(self.as_ptr() as *mut _, b"lockscreen-unlock\0".as_ptr() as *const _,
-                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(lockscreen_unlock_trampoline::<F> as *const ())), Box_::into_raw(f))
-        }
-    }
-
-    #[doc(alias = "wakeup-output")]
-    pub fn connect_wakeup_output<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
-        unsafe extern "C" fn wakeup_output_trampoline<F: Fn(&Lockscreen) + 'static>(this: *mut ffi::PhoshLockscreen, f: glib::ffi::gpointer) {
-            let f: &F = &*(f as *const F);
-            f(&from_glib_borrow(this))
-        }
-        unsafe {
-            let f: Box_<F> = Box_::new(f);
-            connect_raw(self.as_ptr() as *mut _, b"wakeup-output\0".as_ptr() as *const _,
-                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(wakeup_output_trampoline::<F> as *const ())), Box_::into_raw(f))
-        }
-    }
 }
 
 impl Default for Lockscreen {
@@ -103,3 +64,54 @@ pub struct LockscreenBuilder {
     pub fn build(self) -> Lockscreen {
     self.builder.build() }
 }
+
+mod sealed {
+    pub trait Sealed {}
+    impl<T: super::IsA<super::Lockscreen>> Sealed for T {}
+}
+
+pub trait LockscreenExt: IsA<Lockscreen> + sealed::Sealed + 'static {
+    //#[doc(alias = "phosh_lockscreen_get_page")]
+    //#[doc(alias = "get_page")]
+    //fn page(&self) -> /*Ignored*/LockscreenPage {
+    //    unsafe { TODO: call ffi:phosh_lockscreen_get_page() }
+    //}
+
+    //#[doc(alias = "phosh_lockscreen_set_page")]
+    //fn set_page(&self, page: /*Ignored*/LockscreenPage) {
+    //    unsafe { TODO: call ffi:phosh_lockscreen_set_page() }
+    //}
+
+    //#[doc(alias = "calls-manager")]
+    //fn calls_manager(&self) -> /*Ignored*/Option<CallsManager> {
+    //    ObjectExt::property(self.as_ref(), "calls-manager")
+    //}
+
+    #[doc(alias = "lockscreen-unlock")]
+    fn connect_lockscreen_unlock<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn lockscreen_unlock_trampoline<P: IsA<Lockscreen>, F: Fn(&P) + 'static>(this: *mut ffi::PhoshLockscreen, f: glib::ffi::gpointer) {
+            let f: &F = &*(f as *const F);
+            f(Lockscreen::from_glib_borrow(this).unsafe_cast_ref())
+        }
+        unsafe {
+            let f: Box_<F> = Box_::new(f);
+            connect_raw(self.as_ptr() as *mut _, b"lockscreen-unlock\0".as_ptr() as *const _,
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(lockscreen_unlock_trampoline::<Self, F> as *const ())), Box_::into_raw(f))
+        }
+    }
+
+    #[doc(alias = "wakeup-output")]
+    fn connect_wakeup_output<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn wakeup_output_trampoline<P: IsA<Lockscreen>, F: Fn(&P) + 'static>(this: *mut ffi::PhoshLockscreen, f: glib::ffi::gpointer) {
+            let f: &F = &*(f as *const F);
+            f(Lockscreen::from_glib_borrow(this).unsafe_cast_ref())
+        }
+        unsafe {
+            let f: Box_<F> = Box_::new(f);
+            connect_raw(self.as_ptr() as *mut _, b"wakeup-output\0".as_ptr() as *const _,
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(wakeup_output_trampoline::<Self, F> as *const ())), Box_::into_raw(f))
+        }
+    }
+}
+
+impl<O: IsA<Lockscreen>> LockscreenExt for O {}

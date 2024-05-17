@@ -12,5 +12,6 @@ macro_rules! skip_assert_initialized {
 
 pub use auto::*;
 mod auto;
+pub mod subclass;
 
 pub mod prelude;

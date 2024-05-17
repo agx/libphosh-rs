@@ -16,6 +16,17 @@ glib::wrapper! {
 }
 
 impl Shell {
+        pub const NONE: Option<&'static Shell> = None;
+    
+
+    #[doc(alias = "phosh_shell_new")]
+    pub fn new() -> Shell {
+        assert_initialized_main_thread!();
+        unsafe {
+            from_glib_full(ffi::phosh_shell_new())
+        }
+    }
+
             // rustdoc-stripper-ignore-next
             /// Creates a new builder-pattern struct instance to construct [`Shell`] objects.
             ///
@@ -24,310 +35,6 @@ impl Shell {
                 ShellBuilder::new()
             }
         
-
-    //#[doc(alias = "phosh_shell_activate_action")]
-    //pub fn activate_action(&self, action: &str, parameter: /*Ignored*/&glib::Variant) -> bool {
-    //    unsafe { TODO: call ffi:phosh_shell_activate_action() }
-    //}
-
-    //#[doc(alias = "phosh_shell_add_global_keyboard_action_entries")]
-    //pub fn add_global_keyboard_action_entries(&self, actions: /*Ignored*/&gio::ActionEntry, n_entries: i32, user_data: /*Unimplemented*/Option<Basic: Pointer>) {
-    //    unsafe { TODO: call ffi:phosh_shell_add_global_keyboard_action_entries() }
-    //}
-
-    #[doc(alias = "phosh_shell_enable_power_save")]
-    pub fn enable_power_save(&self, enable: bool) {
-        unsafe {
-            ffi::phosh_shell_enable_power_save(self.to_glib_none().0, enable.into_glib());
-        }
-    }
-
-    #[doc(alias = "phosh_shell_fade_out")]
-    pub fn fade_out(&self, timeout: u32) {
-        unsafe {
-            ffi::phosh_shell_fade_out(self.to_glib_none().0, timeout);
-        }
-    }
-
-    //#[doc(alias = "phosh_shell_get_app_launch_context")]
-    //#[doc(alias = "get_app_launch_context")]
-    //pub fn app_launch_context(&self) -> /*Ignored*/gdk::AppLaunchContext {
-    //    unsafe { TODO: call ffi:phosh_shell_get_app_launch_context() }
-    //}
-
-    //#[doc(alias = "phosh_shell_get_app_tracker")]
-    //#[doc(alias = "get_app_tracker")]
-    //pub fn app_tracker(&self) -> /*Ignored*/AppTracker {
-    //    unsafe { TODO: call ffi:phosh_shell_get_app_tracker() }
-    //}
-
-    //#[doc(alias = "phosh_shell_get_background_manager")]
-    //#[doc(alias = "get_background_manager")]
-    //pub fn background_manager(&self) -> /*Ignored*/BackgroundManager {
-    //    unsafe { TODO: call ffi:phosh_shell_get_background_manager() }
-    //}
-
-    #[doc(alias = "phosh_shell_get_blanked")]
-    #[doc(alias = "get_blanked")]
-    pub fn is_blanked(&self) -> bool {
-        unsafe {
-            from_glib(ffi::phosh_shell_get_blanked(self.to_glib_none().0))
-        }
-    }
-
-    //#[doc(alias = "phosh_shell_get_bt_manager")]
-    //#[doc(alias = "get_bt_manager")]
-    //pub fn bt_manager(&self) -> /*Ignored*/BtManager {
-    //    unsafe { TODO: call ffi:phosh_shell_get_bt_manager() }
-    //}
-
-    //#[doc(alias = "phosh_shell_get_builtin_monitor")]
-    //#[doc(alias = "get_builtin_monitor")]
-    //pub fn builtin_monitor(&self) -> /*Ignored*/Option<Monitor> {
-    //    unsafe { TODO: call ffi:phosh_shell_get_builtin_monitor() }
-    //}
-
-    //#[doc(alias = "phosh_shell_get_calls_manager")]
-    //#[doc(alias = "get_calls_manager")]
-    //pub fn calls_manager(&self) -> /*Ignored*/CallsManager {
-    //    unsafe { TODO: call ffi:phosh_shell_get_calls_manager() }
-    //}
-
-    #[doc(alias = "phosh_shell_get_docked")]
-    #[doc(alias = "get_docked")]
-    pub fn is_docked(&self) -> bool {
-        unsafe {
-            from_glib(ffi::phosh_shell_get_docked(self.to_glib_none().0))
-        }
-    }
-
-    //#[doc(alias = "phosh_shell_get_docked_manager")]
-    //#[doc(alias = "get_docked_manager")]
-    //pub fn docked_manager(&self) -> /*Ignored*/DockedManager {
-    //    unsafe { TODO: call ffi:phosh_shell_get_docked_manager() }
-    //}
-
-    //#[doc(alias = "phosh_shell_get_emergency_calls_manager")]
-    //#[doc(alias = "get_emergency_calls_manager")]
-    //pub fn emergency_calls_manager(&self) -> /*Ignored*/EmergencyCallsManager {
-    //    unsafe { TODO: call ffi:phosh_shell_get_emergency_calls_manager() }
-    //}
-
-    //#[doc(alias = "phosh_shell_get_feedback_manager")]
-    //#[doc(alias = "get_feedback_manager")]
-    //pub fn feedback_manager(&self) -> /*Ignored*/FeedbackManager {
-    //    unsafe { TODO: call ffi:phosh_shell_get_feedback_manager() }
-    //}
-
-    //#[doc(alias = "phosh_shell_get_gtk_mount_manager")]
-    //#[doc(alias = "get_gtk_mount_manager")]
-    //pub fn gtk_mount_manager(&self) -> /*Ignored*/GtkMountManager {
-    //    unsafe { TODO: call ffi:phosh_shell_get_gtk_mount_manager() }
-    //}
-
-    //#[doc(alias = "phosh_shell_get_hks_manager")]
-    //#[doc(alias = "get_hks_manager")]
-    //pub fn hks_manager(&self) -> /*Ignored*/HksManager {
-    //    unsafe { TODO: call ffi:phosh_shell_get_hks_manager() }
-    //}
-
-    //#[doc(alias = "phosh_shell_get_launcher_entry_manager")]
-    //#[doc(alias = "get_launcher_entry_manager")]
-    //pub fn launcher_entry_manager(&self) -> /*Ignored*/LauncherEntryManager {
-    //    unsafe { TODO: call ffi:phosh_shell_get_launcher_entry_manager() }
-    //}
-
-    //#[doc(alias = "phosh_shell_get_layout_manager")]
-    //#[doc(alias = "get_layout_manager")]
-    //pub fn layout_manager(&self) -> /*Ignored*/LayoutManager {
-    //    unsafe { TODO: call ffi:phosh_shell_get_layout_manager() }
-    //}
-
-    //#[doc(alias = "phosh_shell_get_location_manager")]
-    //#[doc(alias = "get_location_manager")]
-    //pub fn location_manager(&self) -> /*Ignored*/LocationManager {
-    //    unsafe { TODO: call ffi:phosh_shell_get_location_manager() }
-    //}
-
-    #[doc(alias = "phosh_shell_get_locked")]
-    #[doc(alias = "get_locked")]
-    pub fn is_locked(&self) -> bool {
-        unsafe {
-            from_glib(ffi::phosh_shell_get_locked(self.to_glib_none().0))
-        }
-    }
-
-    //#[doc(alias = "phosh_shell_get_lockscreen_manager")]
-    //#[doc(alias = "get_lockscreen_manager")]
-    //pub fn lockscreen_manager(&self) -> /*Ignored*/LockscreenManager {
-    //    unsafe { TODO: call ffi:phosh_shell_get_lockscreen_manager() }
-    //}
-
-    //#[doc(alias = "phosh_shell_get_mode_manager")]
-    //#[doc(alias = "get_mode_manager")]
-    //pub fn mode_manager(&self) -> /*Ignored*/ModeManager {
-    //    unsafe { TODO: call ffi:phosh_shell_get_mode_manager() }
-    //}
-
-    //#[doc(alias = "phosh_shell_get_monitor_manager")]
-    //#[doc(alias = "get_monitor_manager")]
-    //pub fn monitor_manager(&self) -> /*Ignored*/MonitorManager {
-    //    unsafe { TODO: call ffi:phosh_shell_get_monitor_manager() }
-    //}
-
-    //#[doc(alias = "phosh_shell_get_osk_manager")]
-    //#[doc(alias = "get_osk_manager")]
-    //pub fn osk_manager(&self) -> /*Ignored*/OskManager {
-    //    unsafe { TODO: call ffi:phosh_shell_get_osk_manager() }
-    //}
-
-    //#[doc(alias = "phosh_shell_get_primary_monitor")]
-    //#[doc(alias = "get_primary_monitor")]
-    //pub fn primary_monitor(&self) -> /*Ignored*/Option<Monitor> {
-    //    unsafe { TODO: call ffi:phosh_shell_get_primary_monitor() }
-    //}
-
-    //#[doc(alias = "phosh_shell_get_rotation_manager")]
-    //#[doc(alias = "get_rotation_manager")]
-    //pub fn rotation_manager(&self) -> /*Ignored*/RotationManager {
-    //    unsafe { TODO: call ffi:phosh_shell_get_rotation_manager() }
-    //}
-
-    //#[doc(alias = "phosh_shell_get_screen_saver_manager")]
-    //#[doc(alias = "get_screen_saver_manager")]
-    //pub fn screen_saver_manager(&self) -> /*Ignored*/ScreenSaverManager {
-    //    unsafe { TODO: call ffi:phosh_shell_get_screen_saver_manager() }
-    //}
-
-    //#[doc(alias = "phosh_shell_get_screenshot_manager")]
-    //#[doc(alias = "get_screenshot_manager")]
-    //pub fn screenshot_manager(&self) -> /*Ignored*/ScreenshotManager {
-    //    unsafe { TODO: call ffi:phosh_shell_get_screenshot_manager() }
-    //}
-
-    //#[doc(alias = "phosh_shell_get_session_manager")]
-    //#[doc(alias = "get_session_manager")]
-    //pub fn session_manager(&self) -> /*Ignored*/SessionManager {
-    //    unsafe { TODO: call ffi:phosh_shell_get_session_manager() }
-    //}
-
-    #[doc(alias = "phosh_shell_get_show_splash")]
-    #[doc(alias = "get_show_splash")]
-    pub fn shows_splash(&self) -> bool {
-        unsafe {
-            from_glib(ffi::phosh_shell_get_show_splash(self.to_glib_none().0))
-        }
-    }
-
-    //#[doc(alias = "phosh_shell_get_state")]
-    //#[doc(alias = "get_state")]
-    //pub fn state(&self) -> /*Ignored*/ShellStateFlags {
-    //    unsafe { TODO: call ffi:phosh_shell_get_state() }
-    //}
-
-    //#[doc(alias = "phosh_shell_get_toplevel_manager")]
-    //#[doc(alias = "get_toplevel_manager")]
-    //pub fn toplevel_manager(&self) -> /*Ignored*/ToplevelManager {
-    //    unsafe { TODO: call ffi:phosh_shell_get_toplevel_manager() }
-    //}
-
-    //#[doc(alias = "phosh_shell_get_torch_manager")]
-    //#[doc(alias = "get_torch_manager")]
-    //pub fn torch_manager(&self) -> /*Ignored*/TorchManager {
-    //    unsafe { TODO: call ffi:phosh_shell_get_torch_manager() }
-    //}
-
-    #[doc(alias = "phosh_shell_get_usable_area")]
-    #[doc(alias = "get_usable_area")]
-    pub fn usable_area(&self) -> (i32, i32, i32, i32) {
-        unsafe {
-            let mut x = std::mem::MaybeUninit::uninit();
-            let mut y = std::mem::MaybeUninit::uninit();
-            let mut width = std::mem::MaybeUninit::uninit();
-            let mut height = std::mem::MaybeUninit::uninit();
-            ffi::phosh_shell_get_usable_area(self.to_glib_none().0, x.as_mut_ptr(), y.as_mut_ptr(), width.as_mut_ptr(), height.as_mut_ptr());
-            (x.assume_init(), y.assume_init(), width.assume_init(), height.assume_init())
-        }
-    }
-
-    //#[doc(alias = "phosh_shell_get_vpn_manager")]
-    //#[doc(alias = "get_vpn_manager")]
-    //pub fn vpn_manager(&self) -> /*Ignored*/VpnManager {
-    //    unsafe { TODO: call ffi:phosh_shell_get_vpn_manager() }
-    //}
-
-    //#[doc(alias = "phosh_shell_get_wifi_manager")]
-    //#[doc(alias = "get_wifi_manager")]
-    //pub fn wifi_manager(&self) -> /*Ignored*/WifiManager {
-    //    unsafe { TODO: call ffi:phosh_shell_get_wifi_manager() }
-    //}
-
-    //#[doc(alias = "phosh_shell_get_wwan")]
-    //#[doc(alias = "get_wwan")]
-    //pub fn wwan(&self) -> /*Ignored*/WWan {
-    //    unsafe { TODO: call ffi:phosh_shell_get_wwan() }
-    //}
-
-    #[doc(alias = "phosh_shell_is_session_active")]
-    pub fn is_session_active(&self) -> bool {
-        unsafe {
-            from_glib(ffi::phosh_shell_is_session_active(self.to_glib_none().0))
-        }
-    }
-
-    #[doc(alias = "phosh_shell_is_startup_finished")]
-    pub fn is_startup_finished(&self) -> bool {
-        unsafe {
-            from_glib(ffi::phosh_shell_is_startup_finished(self.to_glib_none().0))
-        }
-    }
-
-    #[doc(alias = "phosh_shell_lock")]
-    pub fn lock(&self) {
-        unsafe {
-            ffi::phosh_shell_lock(self.to_glib_none().0);
-        }
-    }
-
-    #[doc(alias = "phosh_shell_set_locked")]
-    pub fn set_locked(&self, locked: bool) {
-        unsafe {
-            ffi::phosh_shell_set_locked(self.to_glib_none().0, locked.into_glib());
-        }
-    }
-
-    //#[doc(alias = "phosh_shell_set_primary_monitor")]
-    //pub fn set_primary_monitor(&self, monitor: /*Ignored*/&Monitor) {
-    //    unsafe { TODO: call ffi:phosh_shell_set_primary_monitor() }
-    //}
-
-    //#[doc(alias = "phosh_shell_set_state")]
-    //pub fn set_state(&self, state: /*Ignored*/ShellStateFlags, enabled: bool) {
-    //    unsafe { TODO: call ffi:phosh_shell_set_state() }
-    //}
-
-    #[doc(alias = "phosh_shell_started_by_display_manager")]
-    pub fn started_by_display_manager(&self) -> bool {
-        unsafe {
-            from_glib(ffi::phosh_shell_started_by_display_manager(self.to_glib_none().0))
-        }
-    }
-
-    #[doc(alias = "phosh_shell_unlock")]
-    pub fn unlock(&self) {
-        unsafe {
-            ffi::phosh_shell_unlock(self.to_glib_none().0);
-        }
-    }
-
-    pub fn set_docked(&self, docked: bool) {
-        ObjectExt::set_property(self,"docked", docked)
-    }
-
-    //#[doc(alias = "shell-state")]
-    //pub fn shell_state(&self) -> /*Ignored*/ShellStateFlags {
-    //    ObjectExt::property(self, "shell-state")
-    //}
 
     //#[doc(alias = "phosh_shell_get_debug_flags")]
     //#[doc(alias = "get_debug_flags")]
@@ -343,85 +50,13 @@ impl Shell {
             from_glib_none(ffi::phosh_shell_get_default())
         }
     }
-
-    #[doc(alias = "ready")]
-    pub fn connect_ready<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
-        unsafe extern "C" fn ready_trampoline<F: Fn(&Shell) + 'static>(this: *mut ffi::PhoshShell, f: glib::ffi::gpointer) {
-            let f: &F = &*(f as *const F);
-            f(&from_glib_borrow(this))
-        }
-        unsafe {
-            let f: Box_<F> = Box_::new(f);
-            connect_raw(self.as_ptr() as *mut _, b"ready\0".as_ptr() as *const _,
-                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(ready_trampoline::<F> as *const ())), Box_::into_raw(f))
-        }
-    }
-
-    #[doc(alias = "builtin-monitor")]
-    pub fn connect_builtin_monitor_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
-        unsafe extern "C" fn notify_builtin_monitor_trampoline<F: Fn(&Shell) + 'static>(this: *mut ffi::PhoshShell, _param_spec: glib::ffi::gpointer, f: glib::ffi::gpointer) {
-            let f: &F = &*(f as *const F);
-            f(&from_glib_borrow(this))
-        }
-        unsafe {
-            let f: Box_<F> = Box_::new(f);
-            connect_raw(self.as_ptr() as *mut _, b"notify::builtin-monitor\0".as_ptr() as *const _,
-                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(notify_builtin_monitor_trampoline::<F> as *const ())), Box_::into_raw(f))
-        }
-    }
-
-    #[doc(alias = "docked")]
-    pub fn connect_docked_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
-        unsafe extern "C" fn notify_docked_trampoline<F: Fn(&Shell) + 'static>(this: *mut ffi::PhoshShell, _param_spec: glib::ffi::gpointer, f: glib::ffi::gpointer) {
-            let f: &F = &*(f as *const F);
-            f(&from_glib_borrow(this))
-        }
-        unsafe {
-            let f: Box_<F> = Box_::new(f);
-            connect_raw(self.as_ptr() as *mut _, b"notify::docked\0".as_ptr() as *const _,
-                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(notify_docked_trampoline::<F> as *const ())), Box_::into_raw(f))
-        }
-    }
-
-    #[doc(alias = "locked")]
-    pub fn connect_locked_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
-        unsafe extern "C" fn notify_locked_trampoline<F: Fn(&Shell) + 'static>(this: *mut ffi::PhoshShell, _param_spec: glib::ffi::gpointer, f: glib::ffi::gpointer) {
-            let f: &F = &*(f as *const F);
-            f(&from_glib_borrow(this))
-        }
-        unsafe {
-            let f: Box_<F> = Box_::new(f);
-            connect_raw(self.as_ptr() as *mut _, b"notify::locked\0".as_ptr() as *const _,
-                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(notify_locked_trampoline::<F> as *const ())), Box_::into_raw(f))
-        }
-    }
-
-    #[doc(alias = "primary-monitor")]
-    pub fn connect_primary_monitor_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
-        unsafe extern "C" fn notify_primary_monitor_trampoline<F: Fn(&Shell) + 'static>(this: *mut ffi::PhoshShell, _param_spec: glib::ffi::gpointer, f: glib::ffi::gpointer) {
-            let f: &F = &*(f as *const F);
-            f(&from_glib_borrow(this))
-        }
-        unsafe {
-            let f: Box_<F> = Box_::new(f);
-            connect_raw(self.as_ptr() as *mut _, b"notify::primary-monitor\0".as_ptr() as *const _,
-                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(notify_primary_monitor_trampoline::<F> as *const ())), Box_::into_raw(f))
-        }
-    }
-
-    #[doc(alias = "shell-state")]
-    pub fn connect_shell_state_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
-        unsafe extern "C" fn notify_shell_state_trampoline<F: Fn(&Shell) + 'static>(this: *mut ffi::PhoshShell, _param_spec: glib::ffi::gpointer, f: glib::ffi::gpointer) {
-            let f: &F = &*(f as *const F);
-            f(&from_glib_borrow(this))
-        }
-        unsafe {
-            let f: Box_<F> = Box_::new(f);
-            connect_raw(self.as_ptr() as *mut _, b"notify::shell-state\0".as_ptr() as *const _,
-                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(notify_shell_state_trampoline::<F> as *const ())), Box_::into_raw(f))
-        }
-    }
 }
+
+impl Default for Shell {
+                     fn default() -> Self {
+                         Self::new()
+                     }
+                 }
 
 // rustdoc-stripper-ignore-next
         /// A [builder-pattern] type to construct [`Shell`] objects.
@@ -455,3 +90,409 @@ pub struct ShellBuilder {
     pub fn build(self) -> Shell {
     self.builder.build() }
 }
+
+mod sealed {
+    pub trait Sealed {}
+    impl<T: super::IsA<super::Shell>> Sealed for T {}
+}
+
+pub trait ShellExt: IsA<Shell> + sealed::Sealed + 'static {
+    //#[doc(alias = "phosh_shell_activate_action")]
+    //fn activate_action(&self, action: &str, parameter: /*Ignored*/&glib::Variant) -> bool {
+    //    unsafe { TODO: call ffi:phosh_shell_activate_action() }
+    //}
+
+    //#[doc(alias = "phosh_shell_add_global_keyboard_action_entries")]
+    //fn add_global_keyboard_action_entries(&self, actions: /*Ignored*/&gio::ActionEntry, n_entries: i32, user_data: /*Unimplemented*/Option<Basic: Pointer>) {
+    //    unsafe { TODO: call ffi:phosh_shell_add_global_keyboard_action_entries() }
+    //}
+
+    #[doc(alias = "phosh_shell_enable_power_save")]
+    fn enable_power_save(&self, enable: bool) {
+        unsafe {
+            ffi::phosh_shell_enable_power_save(self.as_ref().to_glib_none().0, enable.into_glib());
+        }
+    }
+
+    #[doc(alias = "phosh_shell_fade_out")]
+    fn fade_out(&self, timeout: u32) {
+        unsafe {
+            ffi::phosh_shell_fade_out(self.as_ref().to_glib_none().0, timeout);
+        }
+    }
+
+    //#[doc(alias = "phosh_shell_get_app_launch_context")]
+    //#[doc(alias = "get_app_launch_context")]
+    //fn app_launch_context(&self) -> /*Ignored*/gdk::AppLaunchContext {
+    //    unsafe { TODO: call ffi:phosh_shell_get_app_launch_context() }
+    //}
+
+    //#[doc(alias = "phosh_shell_get_app_tracker")]
+    //#[doc(alias = "get_app_tracker")]
+    //fn app_tracker(&self) -> /*Ignored*/AppTracker {
+    //    unsafe { TODO: call ffi:phosh_shell_get_app_tracker() }
+    //}
+
+    //#[doc(alias = "phosh_shell_get_background_manager")]
+    //#[doc(alias = "get_background_manager")]
+    //fn background_manager(&self) -> /*Ignored*/BackgroundManager {
+    //    unsafe { TODO: call ffi:phosh_shell_get_background_manager() }
+    //}
+
+    #[doc(alias = "phosh_shell_get_blanked")]
+    #[doc(alias = "get_blanked")]
+    fn is_blanked(&self) -> bool {
+        unsafe {
+            from_glib(ffi::phosh_shell_get_blanked(self.as_ref().to_glib_none().0))
+        }
+    }
+
+    //#[doc(alias = "phosh_shell_get_bt_manager")]
+    //#[doc(alias = "get_bt_manager")]
+    //fn bt_manager(&self) -> /*Ignored*/BtManager {
+    //    unsafe { TODO: call ffi:phosh_shell_get_bt_manager() }
+    //}
+
+    //#[doc(alias = "phosh_shell_get_builtin_monitor")]
+    //#[doc(alias = "get_builtin_monitor")]
+    //fn builtin_monitor(&self) -> /*Ignored*/Option<Monitor> {
+    //    unsafe { TODO: call ffi:phosh_shell_get_builtin_monitor() }
+    //}
+
+    //#[doc(alias = "phosh_shell_get_calls_manager")]
+    //#[doc(alias = "get_calls_manager")]
+    //fn calls_manager(&self) -> /*Ignored*/CallsManager {
+    //    unsafe { TODO: call ffi:phosh_shell_get_calls_manager() }
+    //}
+
+    #[doc(alias = "phosh_shell_get_docked")]
+    #[doc(alias = "get_docked")]
+    fn is_docked(&self) -> bool {
+        unsafe {
+            from_glib(ffi::phosh_shell_get_docked(self.as_ref().to_glib_none().0))
+        }
+    }
+
+    //#[doc(alias = "phosh_shell_get_docked_manager")]
+    //#[doc(alias = "get_docked_manager")]
+    //fn docked_manager(&self) -> /*Ignored*/DockedManager {
+    //    unsafe { TODO: call ffi:phosh_shell_get_docked_manager() }
+    //}
+
+    //#[doc(alias = "phosh_shell_get_emergency_calls_manager")]
+    //#[doc(alias = "get_emergency_calls_manager")]
+    //fn emergency_calls_manager(&self) -> /*Ignored*/EmergencyCallsManager {
+    //    unsafe { TODO: call ffi:phosh_shell_get_emergency_calls_manager() }
+    //}
+
+    //#[doc(alias = "phosh_shell_get_feedback_manager")]
+    //#[doc(alias = "get_feedback_manager")]
+    //fn feedback_manager(&self) -> /*Ignored*/FeedbackManager {
+    //    unsafe { TODO: call ffi:phosh_shell_get_feedback_manager() }
+    //}
+
+    //#[doc(alias = "phosh_shell_get_gtk_mount_manager")]
+    //#[doc(alias = "get_gtk_mount_manager")]
+    //fn gtk_mount_manager(&self) -> /*Ignored*/GtkMountManager {
+    //    unsafe { TODO: call ffi:phosh_shell_get_gtk_mount_manager() }
+    //}
+
+    //#[doc(alias = "phosh_shell_get_hks_manager")]
+    //#[doc(alias = "get_hks_manager")]
+    //fn hks_manager(&self) -> /*Ignored*/HksManager {
+    //    unsafe { TODO: call ffi:phosh_shell_get_hks_manager() }
+    //}
+
+    //#[doc(alias = "phosh_shell_get_launcher_entry_manager")]
+    //#[doc(alias = "get_launcher_entry_manager")]
+    //fn launcher_entry_manager(&self) -> /*Ignored*/LauncherEntryManager {
+    //    unsafe { TODO: call ffi:phosh_shell_get_launcher_entry_manager() }
+    //}
+
+    //#[doc(alias = "phosh_shell_get_layout_manager")]
+    //#[doc(alias = "get_layout_manager")]
+    //fn layout_manager(&self) -> /*Ignored*/LayoutManager {
+    //    unsafe { TODO: call ffi:phosh_shell_get_layout_manager() }
+    //}
+
+    //#[doc(alias = "phosh_shell_get_location_manager")]
+    //#[doc(alias = "get_location_manager")]
+    //fn location_manager(&self) -> /*Ignored*/LocationManager {
+    //    unsafe { TODO: call ffi:phosh_shell_get_location_manager() }
+    //}
+
+    #[doc(alias = "phosh_shell_get_locked")]
+    #[doc(alias = "get_locked")]
+    fn is_locked(&self) -> bool {
+        unsafe {
+            from_glib(ffi::phosh_shell_get_locked(self.as_ref().to_glib_none().0))
+        }
+    }
+
+    //#[doc(alias = "phosh_shell_get_lockscreen_manager")]
+    //#[doc(alias = "get_lockscreen_manager")]
+    //fn lockscreen_manager(&self) -> /*Ignored*/LockscreenManager {
+    //    unsafe { TODO: call ffi:phosh_shell_get_lockscreen_manager() }
+    //}
+
+    #[doc(alias = "phosh_shell_get_lockscreen_type")]
+    #[doc(alias = "get_lockscreen_type")]
+    fn lockscreen_type(&self) -> glib::types::Type {
+        unsafe {
+            from_glib(ffi::phosh_shell_get_lockscreen_type(self.as_ref().to_glib_none().0))
+        }
+    }
+
+    //#[doc(alias = "phosh_shell_get_mode_manager")]
+    //#[doc(alias = "get_mode_manager")]
+    //fn mode_manager(&self) -> /*Ignored*/ModeManager {
+    //    unsafe { TODO: call ffi:phosh_shell_get_mode_manager() }
+    //}
+
+    //#[doc(alias = "phosh_shell_get_monitor_manager")]
+    //#[doc(alias = "get_monitor_manager")]
+    //fn monitor_manager(&self) -> /*Ignored*/MonitorManager {
+    //    unsafe { TODO: call ffi:phosh_shell_get_monitor_manager() }
+    //}
+
+    //#[doc(alias = "phosh_shell_get_osk_manager")]
+    //#[doc(alias = "get_osk_manager")]
+    //fn osk_manager(&self) -> /*Ignored*/OskManager {
+    //    unsafe { TODO: call ffi:phosh_shell_get_osk_manager() }
+    //}
+
+    //#[doc(alias = "phosh_shell_get_primary_monitor")]
+    //#[doc(alias = "get_primary_monitor")]
+    //fn primary_monitor(&self) -> /*Ignored*/Option<Monitor> {
+    //    unsafe { TODO: call ffi:phosh_shell_get_primary_monitor() }
+    //}
+
+    //#[doc(alias = "phosh_shell_get_rotation_manager")]
+    //#[doc(alias = "get_rotation_manager")]
+    //fn rotation_manager(&self) -> /*Ignored*/RotationManager {
+    //    unsafe { TODO: call ffi:phosh_shell_get_rotation_manager() }
+    //}
+
+    //#[doc(alias = "phosh_shell_get_screen_saver_manager")]
+    //#[doc(alias = "get_screen_saver_manager")]
+    //fn screen_saver_manager(&self) -> /*Ignored*/ScreenSaverManager {
+    //    unsafe { TODO: call ffi:phosh_shell_get_screen_saver_manager() }
+    //}
+
+    //#[doc(alias = "phosh_shell_get_screenshot_manager")]
+    //#[doc(alias = "get_screenshot_manager")]
+    //fn screenshot_manager(&self) -> /*Ignored*/ScreenshotManager {
+    //    unsafe { TODO: call ffi:phosh_shell_get_screenshot_manager() }
+    //}
+
+    //#[doc(alias = "phosh_shell_get_session_manager")]
+    //#[doc(alias = "get_session_manager")]
+    //fn session_manager(&self) -> /*Ignored*/SessionManager {
+    //    unsafe { TODO: call ffi:phosh_shell_get_session_manager() }
+    //}
+
+    #[doc(alias = "phosh_shell_get_show_splash")]
+    #[doc(alias = "get_show_splash")]
+    fn shows_splash(&self) -> bool {
+        unsafe {
+            from_glib(ffi::phosh_shell_get_show_splash(self.as_ref().to_glib_none().0))
+        }
+    }
+
+    //#[doc(alias = "phosh_shell_get_state")]
+    //#[doc(alias = "get_state")]
+    //fn state(&self) -> /*Ignored*/ShellStateFlags {
+    //    unsafe { TODO: call ffi:phosh_shell_get_state() }
+    //}
+
+    //#[doc(alias = "phosh_shell_get_toplevel_manager")]
+    //#[doc(alias = "get_toplevel_manager")]
+    //fn toplevel_manager(&self) -> /*Ignored*/ToplevelManager {
+    //    unsafe { TODO: call ffi:phosh_shell_get_toplevel_manager() }
+    //}
+
+    //#[doc(alias = "phosh_shell_get_torch_manager")]
+    //#[doc(alias = "get_torch_manager")]
+    //fn torch_manager(&self) -> /*Ignored*/TorchManager {
+    //    unsafe { TODO: call ffi:phosh_shell_get_torch_manager() }
+    //}
+
+    #[doc(alias = "phosh_shell_get_usable_area")]
+    #[doc(alias = "get_usable_area")]
+    fn usable_area(&self) -> (i32, i32, i32, i32) {
+        unsafe {
+            let mut x = std::mem::MaybeUninit::uninit();
+            let mut y = std::mem::MaybeUninit::uninit();
+            let mut width = std::mem::MaybeUninit::uninit();
+            let mut height = std::mem::MaybeUninit::uninit();
+            ffi::phosh_shell_get_usable_area(self.as_ref().to_glib_none().0, x.as_mut_ptr(), y.as_mut_ptr(), width.as_mut_ptr(), height.as_mut_ptr());
+            (x.assume_init(), y.assume_init(), width.assume_init(), height.assume_init())
+        }
+    }
+
+    //#[doc(alias = "phosh_shell_get_vpn_manager")]
+    //#[doc(alias = "get_vpn_manager")]
+    //fn vpn_manager(&self) -> /*Ignored*/VpnManager {
+    //    unsafe { TODO: call ffi:phosh_shell_get_vpn_manager() }
+    //}
+
+    //#[doc(alias = "phosh_shell_get_wifi_manager")]
+    //#[doc(alias = "get_wifi_manager")]
+    //fn wifi_manager(&self) -> /*Ignored*/WifiManager {
+    //    unsafe { TODO: call ffi:phosh_shell_get_wifi_manager() }
+    //}
+
+    //#[doc(alias = "phosh_shell_get_wwan")]
+    //#[doc(alias = "get_wwan")]
+    //fn wwan(&self) -> /*Ignored*/WWan {
+    //    unsafe { TODO: call ffi:phosh_shell_get_wwan() }
+    //}
+
+    #[doc(alias = "phosh_shell_is_session_active")]
+    fn is_session_active(&self) -> bool {
+        unsafe {
+            from_glib(ffi::phosh_shell_is_session_active(self.as_ref().to_glib_none().0))
+        }
+    }
+
+    #[doc(alias = "phosh_shell_is_startup_finished")]
+    fn is_startup_finished(&self) -> bool {
+        unsafe {
+            from_glib(ffi::phosh_shell_is_startup_finished(self.as_ref().to_glib_none().0))
+        }
+    }
+
+    #[doc(alias = "phosh_shell_lock")]
+    fn lock(&self) {
+        unsafe {
+            ffi::phosh_shell_lock(self.as_ref().to_glib_none().0);
+        }
+    }
+
+    #[doc(alias = "phosh_shell_set_default")]
+    fn set_default(&self) {
+        unsafe {
+            ffi::phosh_shell_set_default(self.as_ref().to_glib_none().0);
+        }
+    }
+
+    #[doc(alias = "phosh_shell_set_locked")]
+    fn set_locked(&self, locked: bool) {
+        unsafe {
+            ffi::phosh_shell_set_locked(self.as_ref().to_glib_none().0, locked.into_glib());
+        }
+    }
+
+    //#[doc(alias = "phosh_shell_set_primary_monitor")]
+    //fn set_primary_monitor(&self, monitor: /*Ignored*/&Monitor) {
+    //    unsafe { TODO: call ffi:phosh_shell_set_primary_monitor() }
+    //}
+
+    //#[doc(alias = "phosh_shell_set_state")]
+    //fn set_state(&self, state: /*Ignored*/ShellStateFlags, enabled: bool) {
+    //    unsafe { TODO: call ffi:phosh_shell_set_state() }
+    //}
+
+    #[doc(alias = "phosh_shell_started_by_display_manager")]
+    fn started_by_display_manager(&self) -> bool {
+        unsafe {
+            from_glib(ffi::phosh_shell_started_by_display_manager(self.as_ref().to_glib_none().0))
+        }
+    }
+
+    #[doc(alias = "phosh_shell_unlock")]
+    fn unlock(&self) {
+        unsafe {
+            ffi::phosh_shell_unlock(self.as_ref().to_glib_none().0);
+        }
+    }
+
+    fn set_docked(&self, docked: bool) {
+        ObjectExt::set_property(self.as_ref(),"docked", docked)
+    }
+
+    //#[doc(alias = "shell-state")]
+    //fn shell_state(&self) -> /*Ignored*/ShellStateFlags {
+    //    ObjectExt::property(self.as_ref(), "shell-state")
+    //}
+
+    #[doc(alias = "ready")]
+    fn connect_ready<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn ready_trampoline<P: IsA<Shell>, F: Fn(&P) + 'static>(this: *mut ffi::PhoshShell, f: glib::ffi::gpointer) {
+            let f: &F = &*(f as *const F);
+            f(Shell::from_glib_borrow(this).unsafe_cast_ref())
+        }
+        unsafe {
+            let f: Box_<F> = Box_::new(f);
+            connect_raw(self.as_ptr() as *mut _, b"ready\0".as_ptr() as *const _,
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(ready_trampoline::<Self, F> as *const ())), Box_::into_raw(f))
+        }
+    }
+
+    #[doc(alias = "builtin-monitor")]
+    fn connect_builtin_monitor_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn notify_builtin_monitor_trampoline<P: IsA<Shell>, F: Fn(&P) + 'static>(this: *mut ffi::PhoshShell, _param_spec: glib::ffi::gpointer, f: glib::ffi::gpointer) {
+            let f: &F = &*(f as *const F);
+            f(Shell::from_glib_borrow(this).unsafe_cast_ref())
+        }
+        unsafe {
+            let f: Box_<F> = Box_::new(f);
+            connect_raw(self.as_ptr() as *mut _, b"notify::builtin-monitor\0".as_ptr() as *const _,
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(notify_builtin_monitor_trampoline::<Self, F> as *const ())), Box_::into_raw(f))
+        }
+    }
+
+    #[doc(alias = "docked")]
+    fn connect_docked_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn notify_docked_trampoline<P: IsA<Shell>, F: Fn(&P) + 'static>(this: *mut ffi::PhoshShell, _param_spec: glib::ffi::gpointer, f: glib::ffi::gpointer) {
+            let f: &F = &*(f as *const F);
+            f(Shell::from_glib_borrow(this).unsafe_cast_ref())
+        }
+        unsafe {
+            let f: Box_<F> = Box_::new(f);
+            connect_raw(self.as_ptr() as *mut _, b"notify::docked\0".as_ptr() as *const _,
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(notify_docked_trampoline::<Self, F> as *const ())), Box_::into_raw(f))
+        }
+    }
+
+    #[doc(alias = "locked")]
+    fn connect_locked_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn notify_locked_trampoline<P: IsA<Shell>, F: Fn(&P) + 'static>(this: *mut ffi::PhoshShell, _param_spec: glib::ffi::gpointer, f: glib::ffi::gpointer) {
+            let f: &F = &*(f as *const F);
+            f(Shell::from_glib_borrow(this).unsafe_cast_ref())
+        }
+        unsafe {
+            let f: Box_<F> = Box_::new(f);
+            connect_raw(self.as_ptr() as *mut _, b"notify::locked\0".as_ptr() as *const _,
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(notify_locked_trampoline::<Self, F> as *const ())), Box_::into_raw(f))
+        }
+    }
+
+    #[doc(alias = "primary-monitor")]
+    fn connect_primary_monitor_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn notify_primary_monitor_trampoline<P: IsA<Shell>, F: Fn(&P) + 'static>(this: *mut ffi::PhoshShell, _param_spec: glib::ffi::gpointer, f: glib::ffi::gpointer) {
+            let f: &F = &*(f as *const F);
+            f(Shell::from_glib_borrow(this).unsafe_cast_ref())
+        }
+        unsafe {
+            let f: Box_<F> = Box_::new(f);
+            connect_raw(self.as_ptr() as *mut _, b"notify::primary-monitor\0".as_ptr() as *const _,
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(notify_primary_monitor_trampoline::<Self, F> as *const ())), Box_::into_raw(f))
+        }
+    }
+
+    #[doc(alias = "shell-state")]
+    fn connect_shell_state_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn notify_shell_state_trampoline<P: IsA<Shell>, F: Fn(&P) + 'static>(this: *mut ffi::PhoshShell, _param_spec: glib::ffi::gpointer, f: glib::ffi::gpointer) {
+            let f: &F = &*(f as *const F);
+            f(Shell::from_glib_borrow(this).unsafe_cast_ref())
+        }
+        unsafe {
+            let f: Box_<F> = Box_::new(f);
+            connect_raw(self.as_ptr() as *mut _, b"notify::shell-state\0".as_ptr() as *const _,
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(notify_shell_state_trampoline::<Self, F> as *const ())), Box_::into_raw(f))
+        }
+    }
+}
+
+impl<O: IsA<Shell>> ShellExt for O {}

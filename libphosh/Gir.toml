@@ -24,6 +24,7 @@ external_libraries = [
 generate = [
   "Phosh.Lockscreen",
   "Phosh.LockscreenPage",
+  "Phosh.QuickSetting",
   "Phosh.WallClock",
 ]
 
@@ -192,7 +193,6 @@ ignore = [
     "Phosh.PowerMenu",
     "Phosh.PowerMenuManager",
     "Phosh.Proximity",
-    "Phosh.QuickSetting",
     "Phosh.Revealer",
     "Phosh.RfkillDBusRfkillProxy",
     "Phosh.RfkillDBusRfkillSkeleton",

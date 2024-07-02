@@ -1,5 +1,5 @@
 [wrap-git]
 directory=phosh
 url=https://gitlab.gnome.org/World/Phosh/phosh.git
-revision=main
+revision=c04ab330a02494638407c059a9ca46459e03bd9a
 depth=1

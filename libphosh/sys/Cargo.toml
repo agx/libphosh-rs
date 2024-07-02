@@ -6,6 +6,7 @@ build = "build.rs"
 authors = ["Guido Günther <agx@sigxcpu.org>"]
 categories = ["api-bindings", "gui"]
 keywords = ["phosh", "gnome"]
+description = "FFI bindings for libphosh"
 license = "MIT"
 
 [package.metadata.system-deps.libphosh_0]

@@ -47,5 +47,9 @@ There's two examples demoing the libphosh-rs usage:
    WLR_BACKENDS=wayland phoc -E target/debug/examples/custom-shell-and-lockscreen
 ```
 
+### Documentation
+
+API documentation is at <https://guidog.pages.gitlab.gnome.org/libphosh-rs/git/docs/>
+
 [phosh]: https://gitlab.gnome.org/World/Phosh/phosh
 [phosh-deps]: https://gitlab.gnome.org/World/Phosh/phosh#dependencies

@@ -71,16 +71,55 @@ mod sealed {
 }
 
 pub trait LockscreenExt: IsA<Lockscreen> + sealed::Sealed + 'static {
+    //#[doc(alias = "phosh_lockscreen_add_extra_page")]
+    //fn add_extra_page(&self, widget: /*Ignored*/&gtk::Widget) {
+    //    unsafe { TODO: call ffi:phosh_lockscreen_add_extra_page() }
+    //}
+
+    #[doc(alias = "phosh_lockscreen_clear_pin_entry")]
+    fn clear_pin_entry(&self) {
+        unsafe {
+            ffi::phosh_lockscreen_clear_pin_entry(self.as_ref().to_glib_none().0);
+        }
+    }
+
     //#[doc(alias = "phosh_lockscreen_get_page")]
     //#[doc(alias = "get_page")]
     //fn page(&self) -> /*Ignored*/LockscreenPage {
     //    unsafe { TODO: call ffi:phosh_lockscreen_get_page() }
     //}
 
+    #[doc(alias = "phosh_lockscreen_get_pin_entry")]
+    #[doc(alias = "get_pin_entry")]
+    fn pin_entry(&self) -> glib::GString {
+        unsafe {
+            from_glib_none(ffi::phosh_lockscreen_get_pin_entry(self.as_ref().to_glib_none().0))
+        }
+    }
+
+    //#[doc(alias = "phosh_lockscreen_set_default_page")]
+    //fn set_default_page(&self, page: /*Ignored*/LockscreenPage) {
+    //    unsafe { TODO: call ffi:phosh_lockscreen_set_default_page() }
+    //}
+
     //#[doc(alias = "phosh_lockscreen_set_page")]
     //fn set_page(&self, page: /*Ignored*/LockscreenPage) {
     //    unsafe { TODO: call ffi:phosh_lockscreen_set_page() }
     //}
+
+    #[doc(alias = "phosh_lockscreen_set_unlock_status")]
+    fn set_unlock_status(&self, status: &str) {
+        unsafe {
+            ffi::phosh_lockscreen_set_unlock_status(self.as_ref().to_glib_none().0, status.to_glib_none().0);
+        }
+    }
+
+    #[doc(alias = "phosh_lockscreen_shake_pin_entry")]
+    fn shake_pin_entry(&self) {
+        unsafe {
+            ffi::phosh_lockscreen_shake_pin_entry(self.as_ref().to_glib_none().0);
+        }
+    }
 
     //#[doc(alias = "calls-manager")]
     //fn calls_manager(&self) -> /*Ignored*/Option<CallsManager> {
@@ -110,6 +149,19 @@ pub trait LockscreenExt: IsA<Lockscreen> + sealed::Sealed + 'static {
             let f: Box_<F> = Box_::new(f);
             connect_raw(self.as_ptr() as *mut _, b"wakeup-output\0".as_ptr() as *const _,
                 Some(std::mem::transmute::<_, unsafe extern "C" fn()>(wakeup_output_trampoline::<Self, F> as *const ())), Box_::into_raw(f))
+        }
+    }
+
+    #[doc(alias = "page")]
+    fn connect_page_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn notify_page_trampoline<P: IsA<Lockscreen>, F: Fn(&P) + 'static>(this: *mut ffi::PhoshLockscreen, _param_spec: glib::ffi::gpointer, f: glib::ffi::gpointer) {
+            let f: &F = &*(f as *const F);
+            f(Lockscreen::from_glib_borrow(this).unsafe_cast_ref())
+        }
+        unsafe {
+            let f: Box_<F> = Box_::new(f);
+            connect_raw(self.as_ptr() as *mut _, b"notify::page\0".as_ptr() as *const _,
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(notify_page_trampoline::<Self, F> as *const ())), Box_::into_raw(f))
         }
     }
 }

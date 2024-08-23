@@ -71,9 +71,6 @@ build-doc:
     - ./fix.sh
     # generate the docs
     - export PATH=$HOME/.cargo/bin:$PATH
-    - curl --proto '=https' --tlsv1.2 -sSf -o gir-rustdoc.py
-      https://gitlab.gnome.org/World/Rust/gir-rustdoc/-/raw/main/gir-rustdoc.py
-    - chmod +x gir-rustdoc.py
     - cargo install rustdoc-stripper
     - ./generator.py --embed-docs
     - eval $(./gir-rustdoc.py --branch=$CI_COMMIT_BRANCH pre-docs)

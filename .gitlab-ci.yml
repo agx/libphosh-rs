@@ -67,15 +67,7 @@ build-doc:
     RUST_VERSION: nightly
   <<: *common_before_script
   script:
-    - git checkout -f *.gir
-    - ./fix.sh
-    # generate the docs
-    - export PATH=$HOME/.cargo/bin:$PATH
-    - cargo install rustdoc-stripper
-    - ./generator.py --embed-docs
-    - eval $(./gir-rustdoc.py --branch=$CI_COMMIT_BRANCH pre-docs)
-    - cargo doc --all-features --no-deps
-    - ./gir-rustdoc.py html-index
+    - ./build-doc.sh
     - mv target/doc/ docs
   artifacts:
     paths:

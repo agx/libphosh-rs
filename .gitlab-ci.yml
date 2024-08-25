@@ -41,7 +41,7 @@ variables:
     - eatmydata apt install -y --no-install-recommends $DEPS
     - rustup default $RUST_VERSION
     - git submodule update --checkout
-    - meson subprojects download
+    - meson subprojects download phosh
     - if [ -n "$UPSTREAM_BRANCH" ]; then cd subprojects/phosh && git fetch origin "$UPSTREAM_BRANCH" && git checkout FETCH_HEAD && git show HEAD && cd -; fi
     - cd subprojects/phosh && eatmydata apt -y --no-install-recommends build-dep . && cd -
 

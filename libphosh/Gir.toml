@@ -23,6 +23,7 @@ external_libraries = [
 
 generate = [
   "Phosh.Lockscreen",
+  "Phosh.LockscreenManager",
   "Phosh.LockscreenPage",
   "Phosh.QuickSetting",
   "Phosh.StatusIcon",
@@ -144,7 +145,6 @@ ignore = [
     "Phosh.LayoutManager",
     "Phosh.LocationInfo",
     "Phosh.LocationManager",
-    "Phosh.LockscreenManager",
     "Phosh.Lockshield",
     "Phosh.MMDBusModemModem3gppProxy",
     "Phosh.MMDBusModemModem3gppSkeleton",

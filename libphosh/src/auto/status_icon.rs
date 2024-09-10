@@ -3,128 +3,74 @@
 // from ../gir-files
 // DO NOT EDIT
 
-use crate::{StatusIcon};
 use glib::{prelude::*,signal::{connect_raw, SignalHandlerId},translate::*};
 use std::{boxed::Box as Box_};
 
 glib::wrapper! {
-    #[doc(alias = "PhoshQuickSetting")]
-    pub struct QuickSetting(Object<ffi::PhoshQuickSetting, ffi::PhoshQuickSettingClass>) @extends gtk::Button, gtk::Bin, gtk::Container, gtk::Widget;
+    #[doc(alias = "PhoshStatusIcon")]
+    pub struct StatusIcon(Object<ffi::PhoshStatusIcon, ffi::PhoshStatusIconClass>) @extends gtk::Bin, gtk::Container, gtk::Widget;
 
     match fn {
-        type_ => || ffi::phosh_quick_setting_get_type(),
+        type_ => || ffi::phosh_status_icon_get_type(),
     }
 }
 
-impl QuickSetting {
-        pub const NONE: Option<&'static QuickSetting> = None;
+impl StatusIcon {
+        pub const NONE: Option<&'static StatusIcon> = None;
     
 
-    #[doc(alias = "phosh_quick_setting_new")]
-    pub fn new() -> QuickSetting {
+    #[doc(alias = "phosh_status_icon_new")]
+    pub fn new() -> StatusIcon {
         assert_initialized_main_thread!();
         unsafe {
-            gtk::Widget::from_glib_none(ffi::phosh_quick_setting_new()).unsafe_cast()
+            gtk::Widget::from_glib_none(ffi::phosh_status_icon_new()).unsafe_cast()
         }
     }
 
             // rustdoc-stripper-ignore-next
-            /// Creates a new builder-pattern struct instance to construct [`QuickSetting`] objects.
+            /// Creates a new builder-pattern struct instance to construct [`StatusIcon`] objects.
             ///
-            /// This method returns an instance of [`QuickSettingBuilder`](crate::builders::QuickSettingBuilder) which can be used to create [`QuickSetting`] objects.
-            pub fn builder() -> QuickSettingBuilder {
-                QuickSettingBuilder::new()
+            /// This method returns an instance of [`StatusIconBuilder`](crate::builders::StatusIconBuilder) which can be used to create [`StatusIcon`] objects.
+            pub fn builder() -> StatusIconBuilder {
+                StatusIconBuilder::new()
             }
         
-
-    #[doc(alias = "phosh_quick_setting_open_settings_panel")]
-    pub fn open_settings_panel(panel: &str) {
-        assert_initialized_main_thread!();
-        unsafe {
-            ffi::phosh_quick_setting_open_settings_panel(panel.to_glib_none().0);
-        }
-    }
 }
 
-impl Default for QuickSetting {
+impl Default for StatusIcon {
                      fn default() -> Self {
                          Self::new()
                      }
                  }
 
 // rustdoc-stripper-ignore-next
-        /// A [builder-pattern] type to construct [`QuickSetting`] objects.
+        /// A [builder-pattern] type to construct [`StatusIcon`] objects.
         ///
         /// [builder-pattern]: https://doc.rust-lang.org/1.0.0/style/ownership/builders.html
 #[must_use = "The builder must be built to be used"]
-pub struct QuickSettingBuilder {
-            builder: glib::object::ObjectBuilder<'static, QuickSetting>,
+pub struct StatusIconBuilder {
+            builder: glib::object::ObjectBuilder<'static, StatusIcon>,
         }
 
-        impl QuickSettingBuilder {
+        impl StatusIconBuilder {
         fn new() -> Self {
             Self { builder: glib::object::Object::builder() }
         }
 
-                            pub fn active(self, active: bool) -> Self {
-                            Self { builder: self.builder.property("active", active), }
+                            pub fn extra_widget(self, extra_widget: &impl IsA<gtk::Widget>) -> Self {
+                            Self { builder: self.builder.property("extra-widget", extra_widget.clone().upcast()), }
                         }
 
-                            pub fn has_status(self, has_status: bool) -> Self {
-                            Self { builder: self.builder.property("has-status", has_status), }
+                            pub fn icon_name(self, icon_name: impl Into<glib::GString>) -> Self {
+                            Self { builder: self.builder.property("icon-name", icon_name.into()), }
                         }
 
-                            pub fn present(self, present: bool) -> Self {
-                            Self { builder: self.builder.property("present", present), }
-                        }
-
-                            #[cfg(feature = "gtk_v3_6")]
-    #[cfg_attr(docsrs, doc(cfg(feature = "gtk_v3_6")))]
-    pub fn always_show_image(self, always_show_image: bool) -> Self {
-                            Self { builder: self.builder.property("always-show-image", always_show_image), }
-                        }
-
-                            #[cfg(feature = "gtk_v2_6")]
-    #[cfg_attr(docsrs, doc(cfg(feature = "gtk_v2_6")))]
-    pub fn image(self, image: &impl IsA<gtk::Widget>) -> Self {
-                            Self { builder: self.builder.property("image", image.clone().upcast()), }
-                        }
-
-                        //    #[cfg(feature = "gtk_v2_10")]
-    #[cfg_attr(docsrs, doc(cfg(feature = "gtk_v2_10")))]
-    //pub fn image_position(self, image_position: /*Ignored*/gtk::PositionType) -> Self {
-                        //    Self { builder: self.builder.property("image-position", image_position), }
+                            //pub fn icon_size(self, icon_size: /*Ignored*/gtk::IconSize) -> Self {
+                        //    Self { builder: self.builder.property("icon-size", icon_size), }
                         //}
 
-                            pub fn label(self, label: impl Into<glib::GString>) -> Self {
-                            Self { builder: self.builder.property("label", label.into()), }
-                        }
-
-                            //pub fn relief(self, relief: /*Ignored*/gtk::ReliefStyle) -> Self {
-                        //    Self { builder: self.builder.property("relief", relief), }
-                        //}
-
-                            #[cfg_attr(feature = "v3_10", deprecated = "Since 3.10")]
-    pub fn use_stock(self, use_stock: bool) -> Self {
-                            Self { builder: self.builder.property("use-stock", use_stock), }
-                        }
-
-                            pub fn use_underline(self, use_underline: bool) -> Self {
-                            Self { builder: self.builder.property("use-underline", use_underline), }
-                        }
-
-                            #[cfg(feature = "gtk_v2_4")]
-    #[cfg_attr(docsrs, doc(cfg(feature = "gtk_v2_4")))]
-    #[cfg_attr(feature = "v3_14", deprecated = "Since 3.14")]
-    pub fn xalign(self, xalign: f32) -> Self {
-                            Self { builder: self.builder.property("xalign", xalign), }
-                        }
-
-                            #[cfg(feature = "gtk_v2_4")]
-    #[cfg_attr(docsrs, doc(cfg(feature = "gtk_v2_4")))]
-    #[cfg_attr(feature = "v3_14", deprecated = "Since 3.14")]
-    pub fn yalign(self, yalign: f32) -> Self {
-                            Self { builder: self.builder.property("yalign", yalign), }
+                            pub fn info(self, info: impl Into<glib::GString>) -> Self {
+                            Self { builder: self.builder.property("info", info.into()), }
                         }
 
                             pub fn border_width(self, border_width: u32) -> Self {
@@ -327,146 +273,140 @@ pub struct QuickSettingBuilder {
                         }
 
     // rustdoc-stripper-ignore-next
-    /// Build the [`QuickSetting`].
+    /// Build the [`StatusIcon`].
     #[must_use = "Building the object from the builder is usually expensive and is not expected to have side effects"]
-    pub fn build(self) -> QuickSetting {
+    pub fn build(self) -> StatusIcon {
     self.builder.build() }
 }
 
 mod sealed {
     pub trait Sealed {}
-    impl<T: super::IsA<super::QuickSetting>> Sealed for T {}
+    impl<T: super::IsA<super::StatusIcon>> Sealed for T {}
 }
 
-pub trait QuickSettingExt: IsA<QuickSetting> + sealed::Sealed + 'static {
-    #[doc(alias = "phosh_quick_setting_get_active")]
-    #[doc(alias = "get_active")]
-    fn is_active(&self) -> bool {
+pub trait StatusIconExt: IsA<StatusIcon> + sealed::Sealed + 'static {
+    #[doc(alias = "phosh_status_icon_get_extra_widget")]
+    #[doc(alias = "get_extra_widget")]
+    fn extra_widget(&self) -> Option<gtk::Widget> {
         unsafe {
-            from_glib(ffi::phosh_quick_setting_get_active(self.as_ref().to_glib_none().0))
+            from_glib_none(ffi::phosh_status_icon_get_extra_widget(self.as_ref().to_glib_none().0))
         }
     }
 
-    #[doc(alias = "phosh_quick_setting_get_has_status")]
-    #[doc(alias = "get_has_status")]
-    fn has_status(&self) -> bool {
+    #[doc(alias = "phosh_status_icon_get_icon_name")]
+    #[doc(alias = "get_icon_name")]
+    fn icon_name(&self) -> glib::GString {
         unsafe {
-            from_glib(ffi::phosh_quick_setting_get_has_status(self.as_ref().to_glib_none().0))
+            from_glib_full(ffi::phosh_status_icon_get_icon_name(self.as_ref().to_glib_none().0))
         }
     }
 
-    #[doc(alias = "phosh_quick_setting_get_present")]
-    #[doc(alias = "get_present")]
-    fn is_present(&self) -> bool {
+    //#[doc(alias = "phosh_status_icon_get_icon_size")]
+    //#[doc(alias = "get_icon_size")]
+    //fn icon_size(&self) -> /*Ignored*/gtk::IconSize {
+    //    unsafe { TODO: call ffi:phosh_status_icon_get_icon_size() }
+    //}
+
+    #[doc(alias = "phosh_status_icon_get_info")]
+    #[doc(alias = "get_info")]
+    fn info(&self) -> glib::GString {
         unsafe {
-            from_glib(ffi::phosh_quick_setting_get_present(self.as_ref().to_glib_none().0))
+            from_glib_full(ffi::phosh_status_icon_get_info(self.as_ref().to_glib_none().0))
         }
     }
 
-    #[doc(alias = "phosh_quick_setting_get_status_icon")]
-    #[doc(alias = "get_status_icon")]
-    fn status_icon(&self) -> StatusIcon {
+    #[doc(alias = "phosh_status_icon_get_show_always")]
+    #[doc(alias = "get_show_always")]
+    fn shows_always(&self) -> bool {
         unsafe {
-            from_glib_none(ffi::phosh_quick_setting_get_status_icon(self.as_ref().to_glib_none().0))
+            from_glib(ffi::phosh_status_icon_get_show_always(self.as_ref().to_glib_none().0))
         }
     }
 
-    #[doc(alias = "phosh_quick_setting_set_active")]
-    fn set_active(&self, active: bool) {
+    #[doc(alias = "phosh_status_icon_set_extra_widget")]
+    fn set_extra_widget(&self, widget: &impl IsA<gtk::Widget>) {
         unsafe {
-            ffi::phosh_quick_setting_set_active(self.as_ref().to_glib_none().0, active.into_glib());
+            ffi::phosh_status_icon_set_extra_widget(self.as_ref().to_glib_none().0, widget.as_ref().to_glib_none().0);
         }
     }
 
-    #[doc(alias = "phosh_quick_setting_set_has_status")]
-    fn set_has_status(&self, has_status: bool) {
+    #[doc(alias = "phosh_status_icon_set_icon_name")]
+    fn set_icon_name(&self, icon_name: &str) {
         unsafe {
-            ffi::phosh_quick_setting_set_has_status(self.as_ref().to_glib_none().0, has_status.into_glib());
+            ffi::phosh_status_icon_set_icon_name(self.as_ref().to_glib_none().0, icon_name.to_glib_none().0);
         }
     }
 
-    #[doc(alias = "phosh_quick_setting_set_present")]
-    fn set_present(&self, present: bool) {
+    //#[doc(alias = "phosh_status_icon_set_icon_size")]
+    //fn set_icon_size(&self, size: /*Ignored*/gtk::IconSize) {
+    //    unsafe { TODO: call ffi:phosh_status_icon_set_icon_size() }
+    //}
+
+    #[doc(alias = "phosh_status_icon_set_info")]
+    fn set_info(&self, info: &str) {
         unsafe {
-            ffi::phosh_quick_setting_set_present(self.as_ref().to_glib_none().0, present.into_glib());
+            ffi::phosh_status_icon_set_info(self.as_ref().to_glib_none().0, info.to_glib_none().0);
         }
     }
 
-    #[doc(alias = "phosh_quick_setting_set_status_icon")]
-    fn set_status_icon(&self, widget: &impl IsA<StatusIcon>) {
+    #[doc(alias = "phosh_status_icon_set_show_always")]
+    fn set_show_always(&self, show_always: bool) {
         unsafe {
-            ffi::phosh_quick_setting_set_status_icon(self.as_ref().to_glib_none().0, widget.as_ref().to_glib_none().0);
+            ffi::phosh_status_icon_set_show_always(self.as_ref().to_glib_none().0, show_always.into_glib());
         }
     }
 
-    #[doc(alias = "long-pressed")]
-    fn connect_long_pressed<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
-        unsafe extern "C" fn long_pressed_trampoline<P: IsA<QuickSetting>, F: Fn(&P) + 'static>(this: *mut ffi::PhoshQuickSetting, f: glib::ffi::gpointer) {
+    #[doc(alias = "extra-widget")]
+    fn connect_extra_widget_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn notify_extra_widget_trampoline<P: IsA<StatusIcon>, F: Fn(&P) + 'static>(this: *mut ffi::PhoshStatusIcon, _param_spec: glib::ffi::gpointer, f: glib::ffi::gpointer) {
             let f: &F = &*(f as *const F);
-            f(QuickSetting::from_glib_borrow(this).unsafe_cast_ref())
+            f(StatusIcon::from_glib_borrow(this).unsafe_cast_ref())
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
-            connect_raw(self.as_ptr() as *mut _, b"long-pressed\0".as_ptr() as *const _,
-                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(long_pressed_trampoline::<Self, F> as *const ())), Box_::into_raw(f))
+            connect_raw(self.as_ptr() as *mut _, b"notify::extra-widget\0".as_ptr() as *const _,
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(notify_extra_widget_trampoline::<Self, F> as *const ())), Box_::into_raw(f))
         }
     }
 
-    fn emit_long_pressed(&self) {
-        self.emit_by_name::<()>("long-pressed", &[]);
-    }
-
-    #[doc(alias = "active")]
-    fn connect_active_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
-        unsafe extern "C" fn notify_active_trampoline<P: IsA<QuickSetting>, F: Fn(&P) + 'static>(this: *mut ffi::PhoshQuickSetting, _param_spec: glib::ffi::gpointer, f: glib::ffi::gpointer) {
+    #[doc(alias = "icon-name")]
+    fn connect_icon_name_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn notify_icon_name_trampoline<P: IsA<StatusIcon>, F: Fn(&P) + 'static>(this: *mut ffi::PhoshStatusIcon, _param_spec: glib::ffi::gpointer, f: glib::ffi::gpointer) {
             let f: &F = &*(f as *const F);
-            f(QuickSetting::from_glib_borrow(this).unsafe_cast_ref())
+            f(StatusIcon::from_glib_borrow(this).unsafe_cast_ref())
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
-            connect_raw(self.as_ptr() as *mut _, b"notify::active\0".as_ptr() as *const _,
-                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(notify_active_trampoline::<Self, F> as *const ())), Box_::into_raw(f))
+            connect_raw(self.as_ptr() as *mut _, b"notify::icon-name\0".as_ptr() as *const _,
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(notify_icon_name_trampoline::<Self, F> as *const ())), Box_::into_raw(f))
         }
     }
 
-    #[doc(alias = "has-status")]
-    fn connect_has_status_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
-        unsafe extern "C" fn notify_has_status_trampoline<P: IsA<QuickSetting>, F: Fn(&P) + 'static>(this: *mut ffi::PhoshQuickSetting, _param_spec: glib::ffi::gpointer, f: glib::ffi::gpointer) {
+    #[doc(alias = "icon-size")]
+    fn connect_icon_size_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn notify_icon_size_trampoline<P: IsA<StatusIcon>, F: Fn(&P) + 'static>(this: *mut ffi::PhoshStatusIcon, _param_spec: glib::ffi::gpointer, f: glib::ffi::gpointer) {
             let f: &F = &*(f as *const F);
-            f(QuickSetting::from_glib_borrow(this).unsafe_cast_ref())
+            f(StatusIcon::from_glib_borrow(this).unsafe_cast_ref())
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
-            connect_raw(self.as_ptr() as *mut _, b"notify::has-status\0".as_ptr() as *const _,
-                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(notify_has_status_trampoline::<Self, F> as *const ())), Box_::into_raw(f))
+            connect_raw(self.as_ptr() as *mut _, b"notify::icon-size\0".as_ptr() as *const _,
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(notify_icon_size_trampoline::<Self, F> as *const ())), Box_::into_raw(f))
         }
     }
 
-    #[doc(alias = "present")]
-    fn connect_present_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
-        unsafe extern "C" fn notify_present_trampoline<P: IsA<QuickSetting>, F: Fn(&P) + 'static>(this: *mut ffi::PhoshQuickSetting, _param_spec: glib::ffi::gpointer, f: glib::ffi::gpointer) {
+    #[doc(alias = "info")]
+    fn connect_info_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn notify_info_trampoline<P: IsA<StatusIcon>, F: Fn(&P) + 'static>(this: *mut ffi::PhoshStatusIcon, _param_spec: glib::ffi::gpointer, f: glib::ffi::gpointer) {
             let f: &F = &*(f as *const F);
-            f(QuickSetting::from_glib_borrow(this).unsafe_cast_ref())
+            f(StatusIcon::from_glib_borrow(this).unsafe_cast_ref())
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
-            connect_raw(self.as_ptr() as *mut _, b"notify::present\0".as_ptr() as *const _,
-                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(notify_present_trampoline::<Self, F> as *const ())), Box_::into_raw(f))
-        }
-    }
-
-    #[doc(alias = "status-icon")]
-    fn connect_status_icon_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
-        unsafe extern "C" fn notify_status_icon_trampoline<P: IsA<QuickSetting>, F: Fn(&P) + 'static>(this: *mut ffi::PhoshQuickSetting, _param_spec: glib::ffi::gpointer, f: glib::ffi::gpointer) {
-            let f: &F = &*(f as *const F);
-            f(QuickSetting::from_glib_borrow(this).unsafe_cast_ref())
-        }
-        unsafe {
-            let f: Box_<F> = Box_::new(f);
-            connect_raw(self.as_ptr() as *mut _, b"notify::status-icon\0".as_ptr() as *const _,
-                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(notify_status_icon_trampoline::<Self, F> as *const ())), Box_::into_raw(f))
+            connect_raw(self.as_ptr() as *mut _, b"notify::info\0".as_ptr() as *const _,
+                Some(std::mem::transmute::<_, unsafe extern "C" fn()>(notify_info_trampoline::<Self, F> as *const ())), Box_::into_raw(f))
         }
     }
 }
 
-impl<O: IsA<QuickSetting>> QuickSettingExt for O {}
+impl<O: IsA<StatusIcon>> StatusIconExt for O {}

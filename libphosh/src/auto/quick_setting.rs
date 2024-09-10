@@ -8,7 +8,7 @@ use std::{boxed::Box as Box_};
 
 glib::wrapper! {
     #[doc(alias = "PhoshQuickSetting")]
-    pub struct QuickSetting(Object<ffi::PhoshQuickSetting, ffi::PhoshQuickSettingClass>) @extends gtk::Widget;
+    pub struct QuickSetting(Object<ffi::PhoshQuickSetting, ffi::PhoshQuickSettingClass>) @extends gtk::Button, gtk::Bin, gtk::Container, gtk::Widget;
 
     match fn {
         type_ => || ffi::phosh_quick_setting_get_type(),
@@ -76,6 +76,67 @@ pub struct QuickSettingBuilder {
                             pub fn present(self, present: bool) -> Self {
                             Self { builder: self.builder.property("present", present), }
                         }
+
+                            #[cfg(feature = "gtk_v3_6")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "gtk_v3_6")))]
+    pub fn always_show_image(self, always_show_image: bool) -> Self {
+                            Self { builder: self.builder.property("always-show-image", always_show_image), }
+                        }
+
+                            #[cfg(feature = "gtk_v2_6")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "gtk_v2_6")))]
+    pub fn image(self, image: &impl IsA<gtk::Widget>) -> Self {
+                            Self { builder: self.builder.property("image", image.clone().upcast()), }
+                        }
+
+                        //    #[cfg(feature = "gtk_v2_10")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "gtk_v2_10")))]
+    //pub fn image_position(self, image_position: /*Ignored*/gtk::PositionType) -> Self {
+                        //    Self { builder: self.builder.property("image-position", image_position), }
+                        //}
+
+                            pub fn label(self, label: impl Into<glib::GString>) -> Self {
+                            Self { builder: self.builder.property("label", label.into()), }
+                        }
+
+                            //pub fn relief(self, relief: /*Ignored*/gtk::ReliefStyle) -> Self {
+                        //    Self { builder: self.builder.property("relief", relief), }
+                        //}
+
+                            #[cfg_attr(feature = "v3_10", deprecated = "Since 3.10")]
+    pub fn use_stock(self, use_stock: bool) -> Self {
+                            Self { builder: self.builder.property("use-stock", use_stock), }
+                        }
+
+                            pub fn use_underline(self, use_underline: bool) -> Self {
+                            Self { builder: self.builder.property("use-underline", use_underline), }
+                        }
+
+                            #[cfg(feature = "gtk_v2_4")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "gtk_v2_4")))]
+    #[cfg_attr(feature = "v3_14", deprecated = "Since 3.14")]
+    pub fn xalign(self, xalign: f32) -> Self {
+                            Self { builder: self.builder.property("xalign", xalign), }
+                        }
+
+                            #[cfg(feature = "gtk_v2_4")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "gtk_v2_4")))]
+    #[cfg_attr(feature = "v3_14", deprecated = "Since 3.14")]
+    pub fn yalign(self, yalign: f32) -> Self {
+                            Self { builder: self.builder.property("yalign", yalign), }
+                        }
+
+                            pub fn border_width(self, border_width: u32) -> Self {
+                            Self { builder: self.builder.property("border-width", border_width), }
+                        }
+
+                            pub fn child(self, child: &impl IsA<gtk::Widget>) -> Self {
+                            Self { builder: self.builder.property("child", child.clone().upcast()), }
+                        }
+
+                            //pub fn resize_mode(self, resize_mode: /*Ignored*/gtk::ResizeMode) -> Self {
+                        //    Self { builder: self.builder.property("resize-mode", resize_mode), }
+                        //}
 
                             pub fn app_paintable(self, app_paintable: bool) -> Self {
                             Self { builder: self.builder.property("app-paintable", app_paintable), }
@@ -210,9 +271,9 @@ pub struct QuickSettingBuilder {
                             Self { builder: self.builder.property("opacity", opacity), }
                         }
 
-                            //pub fn parent(self, parent: &impl IsA</*Ignored*/gtk::Container>) -> Self {
-                        //    Self { builder: self.builder.property("parent", parent.clone().upcast()), }
-                        //}
+                            pub fn parent(self, parent: &impl IsA<gtk::Container>) -> Self {
+                            Self { builder: self.builder.property("parent", parent.clone().upcast()), }
+                        }
 
                             pub fn receives_default(self, receives_default: bool) -> Self {
                             Self { builder: self.builder.property("receives-default", receives_default), }

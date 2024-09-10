@@ -33,7 +33,11 @@ manual = [
   "Gio.AsyncReadyCallback",
   "Gio.AsyncResult",
   "Gio.Cancellable",
+  "Gtk.Bin",
+  "Gtk.Button",
+  "Gtk.Container",
   "Gtk.Widget",
+  "Gtk.Window",
 ]
 
 ignore = [

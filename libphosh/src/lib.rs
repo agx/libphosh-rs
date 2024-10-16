@@ -15,3 +15,5 @@ mod auto;
 pub mod subclass;
 
 pub mod prelude;
+
+mod screenshot_manager;

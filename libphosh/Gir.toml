@@ -27,6 +27,7 @@ generate = [
   "Phosh.LockscreenPage",
   "Phosh.QuickSetting",
   "Phosh.StatusIcon",
+  "Phosh.StatusPage",
   "Phosh.WallClock",
 ]
 
@@ -198,6 +199,8 @@ ignore = [
     "Phosh.PowerMenu",
     "Phosh.PowerMenuManager",
     "Phosh.Proximity",
+    "Phosh.QuickSettings",
+    "Phosh.QuickSettingsBox",
     "Phosh.Revealer",
     "Phosh.RfkillDBusRfkillProxy",
     "Phosh.RfkillDBusRfkillSkeleton",
@@ -216,7 +219,6 @@ ignore = [
     "Phosh.SessionPresenceDBusPresenceSkeleton",
     "Phosh.Splash",
     "Phosh.SplashManager",
-    "Phosh.StatusPage",
     "Phosh.SuspendManager",
     "Phosh.SwipeAwayBin",
     "Phosh.SystemModal",

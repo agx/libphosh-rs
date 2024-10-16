@@ -18,6 +18,9 @@ pub use self::shell::Shell;
 mod status_icon;
 pub use self::status_icon::StatusIcon;
 
+mod status_page;
+pub use self::status_page::StatusPage;
+
 mod wall_clock;
 pub use self::wall_clock::WallClock;
 
@@ -29,6 +32,7 @@ pub(crate) mod traits {
     pub use super::quick_setting::QuickSettingExt;
     pub use super::shell::ShellExt;
     pub use super::status_icon::StatusIconExt;
+    pub use super::status_page::StatusPageExt;
     pub use super::wall_clock::WallClockExt;
 }
 pub(crate) mod builders {
@@ -37,4 +41,5 @@ pub(crate) mod builders {
     pub use super::quick_setting::QuickSettingBuilder;
     pub use super::shell::ShellBuilder;
     pub use super::status_icon::StatusIconBuilder;
+    pub use super::status_page::StatusPageBuilder;
 }

@@ -302,6 +302,12 @@ pub trait ShellExt: IsA<Shell> + sealed::Sealed + 'static {
     //    unsafe { TODO: call ffi:phosh_shell_get_state() }
     //}
 
+    //#[doc(alias = "phosh_shell_get_style_manager")]
+    //#[doc(alias = "get_style_manager")]
+    //fn style_manager(&self) -> /*Ignored*/StyleManager {
+    //    unsafe { TODO: call ffi:phosh_shell_get_style_manager() }
+    //}
+
     //#[doc(alias = "phosh_shell_get_toplevel_manager")]
     //#[doc(alias = "get_toplevel_manager")]
     //fn toplevel_manager(&self) -> /*Ignored*/ToplevelManager {

@@ -47884,6 +47884,12 @@ See phosh_mpris_dbus_media_player2_proxy_new_for_bus_sync() for the synchronous,
       <source-position filename="src/notifications/notification.h" line="40"/>
       <type name="utf8" c:type="gchar*"/>
     </constant>
+    <constant name="NOTIFICATION_DEFAULT_TIMEOUT"
+              value="5000"
+              c:type="PHOSH_NOTIFICATION_DEFAULT_TIMEOUT">
+      <source-position filename="src/notifications/notification.h" line="41"/>
+      <type name="gint" c:type="gint"/>
+    </constant>
     <function-macro name="NOTIFY_DBUS_IS_NOTIFICATIONS"
                     c:identifier="PHOSH_NOTIFY_DBUS_IS_NOTIFICATIONS"
                     introspectable="0">
@@ -51475,7 +51481,7 @@ being closed.</doc>
            glib:type-struct="NotifyManagerClass">
       <doc xml:space="preserve"
            filename="src/notifications/notify-manager.c"
-           line="38">Manages notifications
+           line="37">Manages notifications
 
 #PhoshNotifyManager manages notifications sent from the shell
 itself and via the org.freedesktop.Notification DBus interface.
@@ -51490,13 +51496,13 @@ It maintains a list of notifications via a #PhoshNotificationList.</doc>
                 c:identifier="phosh_notify_manager_get_default">
         <doc xml:space="preserve"
              filename="src/notifications/notify-manager.c"
-             line="765">Get the notify manager singleton</doc>
+             line="762">Get the notify manager singleton</doc>
         <source-position filename="src/notifications/notify-manager.h"
                          line="23"/>
         <return-value transfer-ownership="none">
           <doc xml:space="preserve"
                filename="src/notifications/notify-manager.c"
-               line="770">The notify manager singleton</doc>
+               line="767">The notify manager singleton</doc>
           <type name="NotifyManager" c:type="PhoshNotifyManager*"/>
         </return-value>
       </function>
@@ -51504,7 +51510,8 @@ It maintains a list of notifications via a #PhoshNotificationList.</doc>
               c:identifier="phosh_notify_manager_add_notification">
         <doc xml:space="preserve"
              filename="src/notifications/notify-manager.c"
-             line="834">Adds @notification to the current list of notifications.</doc>
+             line="831">Adds @notification to the current list of notifications. This is the single
+entry point to submit notifications.</doc>
         <source-position filename="src/notifications/notify-manager.h"
                          line="27"/>
         <return-value transfer-ownership="none">
@@ -51514,50 +51521,75 @@ It maintains a list of notifications via a #PhoshNotificationList.</doc>
           <instance-parameter name="self" transfer-ownership="none">
             <doc xml:space="preserve"
                  filename="src/notifications/notify-manager.c"
-                 line="836">the #PhoshNotifyManager</doc>
+                 line="833">the #PhoshNotifyManager</doc>
             <type name="NotifyManager" c:type="PhoshNotifyManager*"/>
           </instance-parameter>
           <parameter name="source_id" transfer-ownership="none">
             <doc xml:space="preserve"
                  filename="src/notifications/notify-manager.c"
-                 line="837">The notification source's app_id</doc>
+                 line="834">The notification source's app_id</doc>
             <type name="utf8" c:type="const gchar*"/>
           </parameter>
           <parameter name="expire_timeout" transfer-ownership="none">
             <doc xml:space="preserve"
                  filename="src/notifications/notify-manager.c"
-                 line="838">When the notification should expire</doc>
+                 line="835">When the notification should expire</doc>
             <type name="gint" c:type="int"/>
           </parameter>
           <parameter name="notification" transfer-ownership="none">
             <doc xml:space="preserve"
                  filename="src/notifications/notify-manager.c"
-                 line="839">The notification</doc>
+                 line="836">The notification</doc>
             <type name="Notification" c:type="PhoshNotification*"/>
           </parameter>
         </parameters>
       </method>
       <method name="add_shell_notification"
               c:identifier="phosh_notify_manager_add_shell_notification">
+        <doc xml:space="preserve"
+             filename="src/notifications/notify-manager.c"
+             line="965">Adds a notification to the list of notifications. If `id` is not `0`
+an existing notification is replaced.
+
+If the notification has no `app-name` or `app-icon` set then a shell
+default is filled in.
+
+If the expire_timeout is greater than `0` the notification is
+marked as transient.
+
+The returned `id` can be used at a later point to retract or
+replace the notification.</doc>
         <source-position filename="src/notifications/notify-manager.h"
                          line="39"/>
         <return-value transfer-ownership="none">
+          <doc xml:space="preserve"
+               filename="src/notifications/notify-manager.c"
+               line="984">The id of the notification</doc>
           <type name="guint" c:type="guint"/>
         </return-value>
         <parameters>
           <instance-parameter name="self" transfer-ownership="none">
+            <doc xml:space="preserve"
+                 filename="src/notifications/notify-manager.c"
+                 line="967">The #PhoshNotifyManager</doc>
             <type name="NotifyManager" c:type="PhoshNotifyManager*"/>
           </instance-parameter>
-          <parameter name="summary" transfer-ownership="none">
-            <type name="utf8" c:type="const char*"/>
+          <parameter name="notification" transfer-ownership="none">
+            <doc xml:space="preserve"
+                 filename="src/notifications/notify-manager.c"
+                 line="968">The notification to add</doc>
+            <type name="Notification" c:type="PhoshNotification*"/>
           </parameter>
-          <parameter name="body" transfer-ownership="none">
-            <type name="utf8" c:type="const char*"/>
-          </parameter>
-          <parameter name="icon" transfer-ownership="none">
-            <type name="utf8" c:type="const char*"/>
+          <parameter name="id" transfer-ownership="none">
+            <doc xml:space="preserve"
+                 filename="src/notifications/notify-manager.c"
+                 line="969">The id</doc>
+            <type name="guint" c:type="guint"/>
           </parameter>
           <parameter name="expire_timeout" transfer-ownership="none">
+            <doc xml:space="preserve"
+                 filename="src/notifications/notify-manager.c"
+                 line="970">The expiration timeout</doc>
             <type name="gint" c:type="int"/>
           </parameter>
         </parameters>
@@ -51600,20 +51632,20 @@ It maintains a list of notifications via a #PhoshNotificationList.</doc>
       <method name="get_list" c:identifier="phosh_notify_manager_get_list">
         <doc xml:space="preserve"
              filename="src/notifications/notify-manager.c"
-             line="785">Get the #PhoshNotificationList of current notifications</doc>
+             line="782">Get the #PhoshNotificationList of current notifications</doc>
         <source-position filename="src/notifications/notify-manager.h"
                          line="24"/>
         <return-value transfer-ownership="none">
           <doc xml:space="preserve"
                filename="src/notifications/notify-manager.c"
-               line="791">The #PhoshNotificationList</doc>
+               line="788">The #PhoshNotificationList</doc>
           <type name="NotificationList" c:type="PhoshNotificationList*"/>
         </return-value>
         <parameters>
           <instance-parameter name="self" transfer-ownership="none">
             <doc xml:space="preserve"
                  filename="src/notifications/notify-manager.c"
-                 line="787">the #PhoshNotifyManager</doc>
+                 line="784">the #PhoshNotifyManager</doc>
             <type name="NotifyManager" c:type="PhoshNotifyManager*"/>
           </instance-parameter>
         </parameters>
@@ -51622,13 +51654,13 @@ It maintains a list of notifications via a #PhoshNotificationList.</doc>
               c:identifier="phosh_notify_manager_get_notification_id">
         <doc xml:space="preserve"
              filename="src/notifications/notify-manager.c"
-             line="817">Get a notification id</doc>
+             line="814">Get a notification id</doc>
         <source-position filename="src/notifications/notify-manager.h"
                          line="26"/>
         <return-value transfer-ownership="none">
           <doc xml:space="preserve"
                filename="src/notifications/notify-manager.c"
-               line="823">a notification id that can be used to create new
+               line="820">a notification id that can be used to create new
 notifications.</doc>
           <type name="guint" c:type="guint"/>
         </return-value>
@@ -51636,7 +51668,7 @@ notifications.</doc>
           <instance-parameter name="self" transfer-ownership="none">
             <doc xml:space="preserve"
                  filename="src/notifications/notify-manager.c"
-                 line="819">the #PhoshNotifyManager</doc>
+                 line="816">the #PhoshNotifyManager</doc>
             <type name="NotifyManager" c:type="PhoshNotifyManager*"/>
           </instance-parameter>
         </parameters>
@@ -51645,20 +51677,20 @@ notifications.</doc>
               c:identifier="phosh_notify_manager_get_show_banners">
         <doc xml:space="preserve"
              filename="src/notifications/notify-manager.c"
-             line="801">Are notififcation banners enabled</doc>
+             line="798">Are notififcation banners enabled</doc>
         <source-position filename="src/notifications/notify-manager.h"
                          line="25"/>
         <return-value transfer-ownership="none">
           <doc xml:space="preserve"
                filename="src/notifications/notify-manager.c"
-               line="807">%TRUE if banners should be shown, otherwise %FALSE</doc>
+               line="804">%TRUE if banners should be shown, otherwise %FALSE</doc>
           <type name="gboolean" c:type="gboolean"/>
         </return-value>
         <parameters>
           <instance-parameter name="self" transfer-ownership="none">
             <doc xml:space="preserve"
                  filename="src/notifications/notify-manager.c"
-                 line="803">the #PhoshNotifyManager</doc>
+                 line="800">the #PhoshNotifyManager</doc>
             <type name="NotifyManager" c:type="PhoshNotifyManager*"/>
           </instance-parameter>
         </parameters>
@@ -51682,7 +51714,7 @@ notifications.</doc>
       <glib:signal name="new-notification" when="last">
         <doc xml:space="preserve"
              filename="src/notifications/notify-manager.c"
-             line="718">Emitted when a new notification is received and a banner should (possibly)
+             line="715">Emitted when a new notification is received and a banner should (possibly)
 be shown</doc>
         <return-value transfer-ownership="none">
           <type name="none" c:type="void"/>
@@ -51691,7 +51723,7 @@ be shown</doc>
           <parameter name="notification" transfer-ownership="none">
             <doc xml:space="preserve"
                  filename="src/notifications/notify-manager.c"
-                 line="721">the new #PhoshNotification</doc>
+                 line="718">the new #PhoshNotification</doc>
             <type name="Notification"/>
           </parameter>
         </parameters>
@@ -51699,7 +51731,7 @@ be shown</doc>
       <glib:signal name="notification-activated" when="last">
         <doc xml:space="preserve"
              filename="src/notifications/notify-manager.c"
-             line="737">Emitted when the action on a notification gets activated.</doc>
+             line="734">Emitted when the action on a notification gets activated.</doc>
         <return-value transfer-ownership="none">
           <type name="none" c:type="void"/>
         </return-value>
@@ -51707,7 +51739,7 @@ be shown</doc>
           <parameter name="notification" transfer-ownership="none">
             <doc xml:space="preserve"
                  filename="src/notifications/notify-manager.c"
-                 line="740">the #PhoshNotification</doc>
+                 line="737">the #PhoshNotification</doc>
             <type name="Notification"/>
           </parameter>
         </parameters>
@@ -59206,31 +59238,37 @@ taking screenshots.</doc>
               c:identifier="phosh_screenshot_manager_do_screenshot">
         <doc xml:space="preserve"
              filename="src/screenshot-manager.c"
-             line="626">Initiate a screenshot of all outputs or the given area.</doc>
+             line="644">Initiate a screenshot of all outputs or the given area.</doc>
         <source-position filename="src/screenshot-manager.h" line="21"/>
         <return-value transfer-ownership="none">
           <doc xml:space="preserve"
                filename="src/screenshot-manager.c"
-               line="633">-errno on failure, otherwise 0</doc>
+               line="653">`FALSE` on failure, otherwise `TRUE`</doc>
           <type name="gboolean" c:type="gboolean"/>
         </return-value>
         <parameters>
           <instance-parameter name="self" transfer-ownership="none">
             <doc xml:space="preserve"
                  filename="src/screenshot-manager.c"
-                 line="628">The screenshot maanger</doc>
+                 line="646">The screenshot manager</doc>
             <type name="ScreenshotManager" c:type="PhoshScreenshotManager*"/>
           </instance-parameter>
           <parameter name="area" transfer-ownership="none">
             <doc xml:space="preserve"
                  filename="src/screenshot-manager.c"
-                 line="629">The area to capture or %NULL to capture all outputs</doc>
-            <type name="Gdk.Rectangle" c:type="GdkRectangle*"/>
+                 line="647">The area to capture or %NULL to capture all outputs</doc>
+            <type name="Gdk.Rectangle" c:type="const GdkRectangle*"/>
           </parameter>
           <parameter name="filename" transfer-ownership="none">
+            <doc xml:space="preserve"
+                 filename="src/screenshot-manager.c"
+                 line="648">The output filename</doc>
             <type name="utf8" c:type="const char*"/>
           </parameter>
           <parameter name="include_cursor" transfer-ownership="none">
+            <doc xml:space="preserve"
+                 filename="src/screenshot-manager.c"
+                 line="649">Whether to include the cursor</doc>
             <type name="gboolean" c:type="gboolean"/>
           </parameter>
         </parameters>
@@ -63466,7 +63504,7 @@ once we switch to GTK4.</doc>
            glib:type-struct="StyleManagerClass">
       <doc xml:space="preserve"
            filename="src/style-manager.c"
-           line="18">The style manager is responsible for picking style sheets and
+           line="34">The style manager is responsible for picking style sheets and
 themes and notifying other parts of the shell about changes.</doc>
       <source-position filename="src/style-manager.h" line="15"/>
       <constructor name="new" c:identifier="phosh_style_manager_new">
@@ -63479,7 +63517,7 @@ themes and notifying other parts of the shell about changes.</doc>
                 c:identifier="phosh_style_manager_get_stylesheet">
         <doc xml:space="preserve"
              filename="src/style-manager.c"
-             line="107">Get the proper style sheet based on the given theme name</doc>
+             line="198">Get the proper style sheet based on the given theme name</doc>
         <source-position filename="src/style-manager.h" line="19"/>
         <return-value transfer-ownership="none">
           <type name="utf8" c:type="const char*"/>
@@ -63488,7 +63526,7 @@ themes and notifying other parts of the shell about changes.</doc>
           <parameter name="theme_name" transfer-ownership="none">
             <doc xml:space="preserve"
                  filename="src/style-manager.c"
-                 line="109">A theme name</doc>
+                 line="200">A theme name</doc>
             <type name="utf8" c:type="const char*"/>
           </parameter>
         </parameters>

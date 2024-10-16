@@ -171,6 +171,8 @@ ignore = [
     "Phosh.PowerMenu",
     "Phosh.PowerMenuManager",
     "Phosh.Proximity",
+    "Phosh.QuickSettings",
+    "Phosh.QuickSettingsBox",
     "Phosh.RfkillDBusRfkillProxy",
     "Phosh.RfkillDBusRfkillSkeleton",
     "Phosh.RotateInfo",

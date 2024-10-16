@@ -190,7 +190,6 @@ ignore = [
     "Phosh.SessionPresenceDBusPresenceSkeleton",
     "Phosh.Splash",
     "Phosh.SplashManager",
-    "Phosh.StatusPage",
     "Phosh.SuspendManager",
     "Phosh.SwipeAwayBin",
     "Phosh.SystemModal",

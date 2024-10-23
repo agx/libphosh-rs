@@ -12,6 +12,9 @@ pub use self::lockscreen_manager::LockscreenManager;
 mod quick_setting;
 pub use self::quick_setting::QuickSetting;
 
+mod screenshot_manager;
+pub use self::screenshot_manager::ScreenshotManager;
+
 mod shell;
 pub use self::shell::Shell;
 

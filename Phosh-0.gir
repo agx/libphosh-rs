@@ -59253,16 +59253,22 @@ taking screenshots.</doc>
                  line="646">The screenshot manager</doc>
             <type name="ScreenshotManager" c:type="PhoshScreenshotManager*"/>
           </instance-parameter>
-          <parameter name="area" transfer-ownership="none">
+          <parameter name="area"
+                     transfer-ownership="none"
+                     nullable="1"
+                     allow-none="1">
             <doc xml:space="preserve"
                  filename="src/screenshot-manager.c"
-                 line="647">The area to capture or %NULL to capture all outputs</doc>
+                 line="647">The area to capture or %NULL to capture all outputs test</doc>
             <type name="Gdk.Rectangle" c:type="const GdkRectangle*"/>
           </parameter>
-          <parameter name="filename" transfer-ownership="none">
+          <parameter name="filename"
+                     transfer-ownership="none"
+                     nullable="1"
+                     allow-none="1">
             <doc xml:space="preserve"
                  filename="src/screenshot-manager.c"
-                 line="648">The output filename</doc>
+                 line="648">The output filename or %NULL to copy buffer to clipboard</doc>
             <type name="utf8" c:type="const char*"/>
           </parameter>
           <parameter name="include_cursor" transfer-ownership="none">
@@ -60432,9 +60438,7 @@ managing attributes of the session.</doc>
           </parameter>
         </parameters>
       </method>
-      <method name="is_active"
-              c:identifier="phosh_session_manager_is_active"
-              glib:get-property="active">
+      <method name="is_active" c:identifier="phosh_session_manager_is_active">
         <source-position filename="src/session-manager.h" line="30"/>
         <return-value transfer-ownership="none">
           <type name="gboolean" c:type="gboolean"/>
@@ -60509,10 +60513,7 @@ managing attributes of the session.</doc>
           </parameter>
         </parameters>
       </method>
-      <property name="active"
-                transfer-ownership="none"
-                getter="is_active"
-                default-value="FALSE">
+      <property name="active" transfer-ownership="none" default-value="FALSE">
         <doc xml:space="preserve"
              filename="src/session-manager.c"
              line="404">Whether this phosh instance runs in the currently active session.</doc>
@@ -64176,9 +64177,7 @@ The #PhoshSystemPrompt is used to ask for PINs and passwords</doc>
           </parameter>
         </parameters>
       </method>
-      <method name="is_ready"
-              c:identifier="phosh_thumbnail_is_ready"
-              glib:get-property="ready">
+      <method name="is_ready" c:identifier="phosh_thumbnail_is_ready">
         <source-position filename="src/thumbnail.h" line="38"/>
         <return-value transfer-ownership="none">
           <type name="gboolean" c:type="gboolean"/>
@@ -64189,10 +64188,7 @@ The #PhoshSystemPrompt is used to ask for PINs and passwords</doc>
           </instance-parameter>
         </parameters>
       </method>
-      <property name="ready"
-                transfer-ownership="none"
-                getter="is_ready"
-                default-value="FALSE">
+      <property name="ready" transfer-ownership="none" default-value="FALSE">
         <doc xml:space="preserve"
              filename="src/thumbnail.c"
              line="108">Whether the image data is ready to be used</doc>
@@ -64616,9 +64612,7 @@ target state.</doc>
           </instance-parameter>
         </parameters>
       </method>
-      <method name="is_activated"
-              c:identifier="phosh_toplevel_is_activated"
-              glib:get-property="activated">
+      <method name="is_activated" c:identifier="phosh_toplevel_is_activated">
         <source-position filename="src/toplevel.h" line="26"/>
         <return-value transfer-ownership="none">
           <type name="gboolean" c:type="gboolean"/>
@@ -64629,9 +64623,7 @@ target state.</doc>
           </instance-parameter>
         </parameters>
       </method>
-      <method name="is_configured"
-              c:identifier="phosh_toplevel_is_configured"
-              glib:get-property="configured">
+      <method name="is_configured" c:identifier="phosh_toplevel_is_configured">
         <source-position filename="src/toplevel.h" line="25"/>
         <return-value transfer-ownership="none">
           <type name="gboolean" c:type="gboolean"/>
@@ -64642,9 +64634,7 @@ target state.</doc>
           </instance-parameter>
         </parameters>
       </method>
-      <method name="is_fullscreen"
-              c:identifier="phosh_toplevel_is_fullscreen"
-              glib:get-property="fullscreen">
+      <method name="is_fullscreen" c:identifier="phosh_toplevel_is_fullscreen">
         <source-position filename="src/toplevel.h" line="28"/>
         <return-value transfer-ownership="none">
           <type name="gboolean" c:type="gboolean"/>
@@ -64655,9 +64645,7 @@ target state.</doc>
           </instance-parameter>
         </parameters>
       </method>
-      <method name="is_maximized"
-              c:identifier="phosh_toplevel_is_maximized"
-              glib:get-property="maximized">
+      <method name="is_maximized" c:identifier="phosh_toplevel_is_maximized">
         <source-position filename="src/toplevel.h" line="27"/>
         <return-value transfer-ownership="none">
           <type name="gboolean" c:type="gboolean"/>
@@ -64670,7 +64658,6 @@ target state.</doc>
       </method>
       <property name="activated"
                 transfer-ownership="none"
-                getter="is_activated"
                 default-value="FALSE">
         <type name="gboolean" c:type="gboolean"/>
       </property>
@@ -64679,13 +64666,11 @@ target state.</doc>
       </property>
       <property name="configured"
                 transfer-ownership="none"
-                getter="is_configured"
                 default-value="FALSE">
         <type name="gboolean" c:type="gboolean"/>
       </property>
       <property name="fullscreen"
                 transfer-ownership="none"
-                getter="is_fullscreen"
                 default-value="FALSE">
         <type name="gboolean" c:type="gboolean"/>
       </property>
@@ -64698,7 +64683,6 @@ target state.</doc>
       </property>
       <property name="maximized"
                 transfer-ownership="none"
-                getter="is_maximized"
                 default-value="FALSE">
         <type name="gboolean" c:type="gboolean"/>
       </property>
@@ -65490,9 +65474,7 @@ It doesn't take into account whether the connection is enabled or not.</doc>
           </instance-parameter>
         </parameters>
       </method>
-      <method name="is_enabled"
-              c:identifier="phosh_wwan_is_enabled"
-              glib:get-property="enabled">
+      <method name="is_enabled" c:identifier="phosh_wwan_is_enabled">
         <source-position filename="src/wwan/phosh-wwan-iface.h" line="48"/>
         <return-value transfer-ownership="none">
           <type name="gboolean" c:type="gboolean"/>
@@ -65503,9 +65485,7 @@ It doesn't take into account whether the connection is enabled or not.</doc>
           </instance-parameter>
         </parameters>
       </method>
-      <method name="is_present"
-              c:identifier="phosh_wwan_is_present"
-              glib:get-property="present">
+      <method name="is_present" c:identifier="phosh_wwan_is_present">
         <source-position filename="src/wwan/phosh-wwan-iface.h" line="47"/>
         <return-value transfer-ownership="none">
           <type name="gboolean" c:type="gboolean"/>
@@ -65516,9 +65496,7 @@ It doesn't take into account whether the connection is enabled or not.</doc>
           </instance-parameter>
         </parameters>
       </method>
-      <method name="is_unlocked"
-              c:identifier="phosh_wwan_is_unlocked"
-              glib:get-property="unlocked">
+      <method name="is_unlocked" c:identifier="phosh_wwan_is_unlocked">
         <source-position filename="src/wwan/phosh-wwan-iface.h" line="45"/>
         <return-value transfer-ownership="none">
           <type name="gboolean" c:type="gboolean"/>
@@ -65576,10 +65554,7 @@ It doesn't take into account whether the connection is enabled or not.</doc>
              line="39">The access-tec of the current modem</doc>
         <type name="utf8" c:type="gchar*"/>
       </property>
-      <property name="enabled"
-                transfer-ownership="none"
-                getter="is_enabled"
-                default-value="FALSE">
+      <property name="enabled" transfer-ownership="none" default-value="FALSE">
         <doc xml:space="preserve"
              filename="src/wwan/phosh-wwan-iface.c"
              line="79">Whether a modem is enabled</doc>
@@ -65594,10 +65569,7 @@ It doesn't take into account whether the connection is enabled or not.</doc>
              line="89">The name of the operator of the current modem</doc>
         <type name="utf8" c:type="gchar*"/>
       </property>
-      <property name="present"
-                transfer-ownership="none"
-                getter="is_present"
-                default-value="FALSE">
+      <property name="present" transfer-ownership="none" default-value="FALSE">
         <doc xml:space="preserve"
              filename="src/wwan/phosh-wwan-iface.c"
              line="69">Whether a modem is prsent</doc>
@@ -65620,7 +65592,6 @@ It doesn't take into account whether the connection is enabled or not.</doc>
       </property>
       <property name="unlocked"
                 transfer-ownership="none"
-                getter="is_unlocked"
                 default-value="FALSE">
         <doc xml:space="preserve"
              filename="src/wwan/phosh-wwan-iface.c"

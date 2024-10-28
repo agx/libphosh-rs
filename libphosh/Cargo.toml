@@ -39,17 +39,22 @@ rustdoc-args = ["--cfg", "docsrs"]
 [dependencies]
 libc = '0.2'
 
-[dependencies.glib]
+[dependencies.gdk]
 version = "0.18"
 branch = "0.18"
-git = "https://github.com/gtk-rs/gtk-rs-core"
-features = [ "v2_66" ]
+git = "https://github.com/gtk-rs/gtk3-rs.git"
 
 [dependencies.gio]
 version = "0.18"
 branch = "0.18"
 git = "https://github.com/gtk-rs/gtk-rs-core"
 features = [ "v2_70" ]
+
+[dependencies.glib]
+version = "0.18"
+branch = "0.18"
+git = "https://github.com/gtk-rs/gtk-rs-core"
+features = [ "v2_66" ]
 
 [dependencies.gtk]
 version = "0.18"

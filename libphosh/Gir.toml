@@ -16,9 +16,10 @@ generate_builder = true
 trust_return_value_nullability = true
 
 external_libraries = [
+  "Gdk",
+  "Gio",
   "GLib",
   "GObject",
-  "Gio",
 ]
 
 generate = [
@@ -33,10 +34,11 @@ generate = [
 ]
 
 manual = [
-  "GLib.Error",
+  "Gdk.Rectangle",
   "Gio.AsyncReadyCallback",
   "Gio.AsyncResult",
   "Gio.Cancellable",
+  "GLib.Error",
   "Gtk.Bin",
   "Gtk.Button",
   "Gtk.Container",

@@ -374,6 +374,13 @@ pub trait ShellExt: IsA<Shell> + sealed::Sealed + 'static {
         }
     }
 
+    #[doc(alias = "phosh_shell_set_bg_alpha")]
+    fn set_bg_alpha(&self, alpha: f64) {
+        unsafe {
+            ffi::phosh_shell_set_bg_alpha(self.as_ref().to_glib_none().0, alpha);
+        }
+    }
+
     #[doc(alias = "phosh_shell_set_default")]
     fn set_default(&self) {
         unsafe {

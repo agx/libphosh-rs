@@ -13,11 +13,11 @@ and/or use gtk-doc annotations.  -->
   <include name="Gtk" version="3.0"/>
   <include name="Handy" version="1"/>
   <include name="NM" version="1.0"/>
-  <package name="libphosh-0.42"/>
+  <package name="libphosh-0.43"/>
   <c:include name="libphosh.h"/>
   <namespace name="Phosh"
              version="0"
-             shared-library="libphosh-0.42.so.0"
+             shared-library="libphosh-0.43.so.0"
              c:identifier-prefixes="Phosh"
              c:symbol-prefixes="phosh">
     <constant name="APP_AUTH_PROMPT_CHOICES_FORMAT"
@@ -42531,7 +42531,7 @@ Other outputs are locked via [type@Phosh.Lockshield]s.
               c:identifier="phosh_lockscreen_add_extra_page">
         <doc xml:space="preserve"
              filename="src/lockscreen.c"
-             line="1232">Inserts a custom widget into the "extra" page of the lockscreen. This page sits in-between the
+             line="1272">Inserts a custom widget into the "extra" page of the lockscreen. This page sits in-between the
 info page and the keypad page. By default, this page does not exist and is not used. Once an
 extra page is added, it can be navigated to by swiping and also via calls to
 [method@Lockscreen.set_default_page].</doc>
@@ -42543,13 +42543,13 @@ extra page is added, it can be navigated to by swiping and also via calls to
           <instance-parameter name="self" transfer-ownership="none">
             <doc xml:space="preserve"
                  filename="src/lockscreen.c"
-                 line="1234">The `PhoshLockscreen`</doc>
+                 line="1274">The `PhoshLockscreen`</doc>
             <type name="Lockscreen" c:type="PhoshLockscreen*"/>
           </instance-parameter>
           <parameter name="widget" transfer-ownership="none">
             <doc xml:space="preserve"
                  filename="src/lockscreen.c"
-                 line="1235">The extra #GtkWidget to insert into the lockscreen carousel</doc>
+                 line="1275">The extra #GtkWidget to insert into the lockscreen carousel</doc>
             <type name="Gtk.Widget" c:type="GtkWidget*"/>
           </parameter>
         </parameters>
@@ -42558,7 +42558,7 @@ extra page is added, it can be navigated to by swiping and also via calls to
               c:identifier="phosh_lockscreen_clear_pin_entry">
         <doc xml:space="preserve"
              filename="src/lockscreen.c"
-             line="1192">Clears the current contents of the keypad PIN entry buffer</doc>
+             line="1232">Clears the current contents of the keypad PIN entry buffer</doc>
         <source-position filename="src/lockscreen.h" line="68"/>
         <return-value transfer-ownership="none">
           <type name="none" c:type="void"/>
@@ -42567,7 +42567,7 @@ extra page is added, it can be navigated to by swiping and also via calls to
           <instance-parameter name="self" transfer-ownership="none">
             <doc xml:space="preserve"
                  filename="src/lockscreen.c"
-                 line="1194">The `PhoshLockscreen`</doc>
+                 line="1234">The `PhoshLockscreen`</doc>
             <type name="Lockscreen" c:type="PhoshLockscreen*"/>
           </instance-parameter>
         </parameters>
@@ -42579,14 +42579,14 @@ extra page is added, it can be navigated to by swiping and also via calls to
         <return-value transfer-ownership="none">
           <doc xml:space="preserve"
                filename="src/lockscreen.c"
-               line="1092">The #PhoshLockscreenPage that is currently shown</doc>
+               line="1132">The #PhoshLockscreenPage that is currently shown</doc>
           <type name="LockscreenPage" c:type="PhoshLockscreenPage"/>
         </return-value>
         <parameters>
           <instance-parameter name="self" transfer-ownership="none">
             <doc xml:space="preserve"
                  filename="src/lockscreen.c"
-                 line="1090">The `PhoshLockscreen`</doc>
+                 line="1130">The `PhoshLockscreen`</doc>
             <type name="Lockscreen" c:type="PhoshLockscreen*"/>
           </instance-parameter>
         </parameters>
@@ -42595,19 +42595,19 @@ extra page is added, it can be navigated to by swiping and also via calls to
               c:identifier="phosh_lockscreen_get_pin_entry">
         <doc xml:space="preserve"
              filename="src/lockscreen.c"
-             line="1174">Get the current contents of the keypad PIN entry buffer</doc>
+             line="1214">Get the current contents of the keypad PIN entry buffer</doc>
         <source-position filename="src/lockscreen.h" line="67"/>
         <return-value transfer-ownership="none">
           <doc xml:space="preserve"
                filename="src/lockscreen.c"
-               line="1180">the contents of the entry buffer</doc>
+               line="1220">the contents of the entry buffer</doc>
           <type name="utf8" c:type="const char*"/>
         </return-value>
         <parameters>
           <instance-parameter name="self" transfer-ownership="none">
             <doc xml:space="preserve"
                  filename="src/lockscreen.c"
-                 line="1176">The `PhoshLockscreen`</doc>
+                 line="1216">The `PhoshLockscreen`</doc>
             <type name="Lockscreen" c:type="PhoshLockscreen*"/>
           </instance-parameter>
         </parameters>
@@ -42616,7 +42616,7 @@ extra page is added, it can be navigated to by swiping and also via calls to
               c:identifier="phosh_lockscreen_set_default_page">
         <doc xml:space="preserve"
              filename="src/lockscreen.c"
-             line="1156">Specifies which page should be shown by default when the lockscreen is made visible. This will
+             line="1196">Specifies which page should be shown by default when the lockscreen is made visible. This will
 also be the page that is shown when the keypad idle timer is reached.</doc>
         <source-position filename="src/lockscreen.h" line="64"/>
         <return-value transfer-ownership="none">
@@ -42626,7 +42626,7 @@ also be the page that is shown when the keypad idle timer is reached.</doc>
           <instance-parameter name="self" transfer-ownership="none">
             <doc xml:space="preserve"
                  filename="src/lockscreen.c"
-                 line="1158">The `PhoshLockscreen`
+                 line="1198">The `PhoshLockscreen`
 page: the page to show by default</doc>
             <type name="Lockscreen" c:type="PhoshLockscreen*"/>
           </instance-parameter>
@@ -42638,7 +42638,7 @@ page: the page to show by default</doc>
       <method name="set_page" c:identifier="phosh_lockscreen_set_page">
         <doc xml:space="preserve"
              filename="src/lockscreen.c"
-             line="1118">Scrolls to a specific page in the carousel. The state of the deck
+             line="1158">Scrolls to a specific page in the carousel. The state of the deck
 isn't changed.</doc>
         <source-position filename="src/lockscreen.h" line="61"/>
         <return-value transfer-ownership="none">
@@ -42648,7 +42648,7 @@ isn't changed.</doc>
           <instance-parameter name="self" transfer-ownership="none">
             <doc xml:space="preserve"
                  filename="src/lockscreen.c"
-                 line="1120">The `PhoshLockscreen`
+                 line="1160">The `PhoshLockscreen`
 page: The page to scroll to</doc>
             <type name="Lockscreen" c:type="PhoshLockscreen*"/>
           </instance-parameter>
@@ -42661,7 +42661,7 @@ page: The page to scroll to</doc>
               c:identifier="phosh_lockscreen_set_unlock_status">
         <doc xml:space="preserve"
              filename="src/lockscreen.c"
-             line="1253">Sets the text displayed in the unlock status label.</doc>
+             line="1293">Sets the text displayed in the unlock status label.</doc>
         <source-position filename="src/lockscreen.h" line="71"/>
         <return-value transfer-ownership="none">
           <type name="none" c:type="void"/>
@@ -42670,13 +42670,13 @@ page: The page to scroll to</doc>
           <instance-parameter name="self" transfer-ownership="none">
             <doc xml:space="preserve"
                  filename="src/lockscreen.c"
-                 line="1255">The `PhoshLockscreen`</doc>
+                 line="1295">The `PhoshLockscreen`</doc>
             <type name="Lockscreen" c:type="PhoshLockscreen*"/>
           </instance-parameter>
           <parameter name="status" transfer-ownership="none">
             <doc xml:space="preserve"
                  filename="src/lockscreen.c"
-                 line="1256">The status text</doc>
+                 line="1296">The status text</doc>
             <type name="utf8" c:type="const char*"/>
           </parameter>
         </parameters>
@@ -42685,7 +42685,7 @@ page: The page to scroll to</doc>
               c:identifier="phosh_lockscreen_shake_pin_entry">
         <doc xml:space="preserve"
              filename="src/lockscreen.c"
-             line="1207">Triggers an animation that shakes the PIN entry left and right for a brief period.
+             line="1247">Triggers an animation that shakes the PIN entry left and right for a brief period.
 After the animation is complete, the PIN entry buffer is cleared. Used to visually indicate
 authentication errors.</doc>
         <source-position filename="src/lockscreen.h" line="69"/>
@@ -42696,7 +42696,7 @@ authentication errors.</doc>
           <instance-parameter name="self" transfer-ownership="none">
             <doc xml:space="preserve"
                  filename="src/lockscreen.c"
-                 line="1209">The `PhoshLockscreen`</doc>
+                 line="1249">The `PhoshLockscreen`</doc>
             <type name="Lockscreen" c:type="PhoshLockscreen*"/>
           </instance-parameter>
         </parameters>
@@ -42707,7 +42707,7 @@ authentication errors.</doc>
                 transfer-ownership="none">
         <doc xml:space="preserve"
              filename="src/lockscreen.c"
-             line="949">The calls manager handling incoming and active calls.</doc>
+             line="979">The calls manager handling incoming and active calls.</doc>
         <type name="CallsManager"/>
       </property>
       <property name="page"
@@ -42716,8 +42716,17 @@ authentication errors.</doc>
                 default-value="PHOSH_LOCKSCREEN_PAGE_UNLOCK">
         <doc xml:space="preserve"
              filename="src/lockscreen.c"
-             line="958">The currently active carousel page</doc>
+             line="998">The currently active carousel page</doc>
         <type name="LockscreenPage"/>
+      </property>
+      <property name="require-unlock"
+                writable="1"
+                transfer-ownership="none"
+                default-value="FALSE">
+        <doc xml:space="preserve"
+             filename="src/lockscreen.c"
+             line="989">Require entering PIN or password to unlock. If false, unlock by swiping up.</doc>
+        <type name="gboolean" c:type="gboolean"/>
       </property>
       <field name="parent_instance">
         <type name="LayerSurface" c:type="PhoshLayerSurface"/>
@@ -42725,7 +42734,7 @@ authentication errors.</doc>
       <glib:signal name="lockscreen-unlock" when="last">
         <doc xml:space="preserve"
              filename="src/lockscreen.c"
-             line="971">This signal is emitted when authentication was successful and the
+             line="1011">This signal is emitted when authentication was successful and the
 session should be unlocked.</doc>
         <return-value transfer-ownership="none">
           <type name="none" c:type="void"/>
@@ -42734,7 +42743,7 @@ session should be unlocked.</doc>
       <glib:signal name="wakeup-output" when="last">
         <doc xml:space="preserve"
              filename="src/lockscreen.c"
-             line="981">Emitted when the output showing the lock screen should be woken
+             line="1021">Emitted when the output showing the lock screen should be woken
 up.</doc>
         <return-value transfer-ownership="none">
           <type name="none" c:type="void"/>
@@ -48961,20 +48970,20 @@ This includes the default action.</doc>
               glib:get-property="notification">
         <doc xml:space="preserve"
              filename="src/notifications/notification-banner.c"
-             line="289">Get the notification.</doc>
+             line="279">Get the notification.</doc>
         <source-position filename="src/notifications/notification-banner.h"
                          line="22"/>
         <return-value transfer-ownership="none">
           <doc xml:space="preserve"
                filename="src/notifications/notification-banner.c"
-               line="295">The notification</doc>
+               line="285">The notification</doc>
           <type name="Notification" c:type="PhoshNotification*"/>
         </return-value>
         <parameters>
           <instance-parameter name="self" transfer-ownership="none">
             <doc xml:space="preserve"
                  filename="src/notifications/notification-banner.c"
-                 line="291">The banner</doc>
+                 line="281">The banner</doc>
             <type name="NotificationBanner" c:type="PhoshNotificationBanner*"/>
           </instance-parameter>
         </parameters>
@@ -48986,7 +48995,7 @@ This includes the default action.</doc>
                 getter="get_notification">
         <doc xml:space="preserve"
              filename="src/notifications/notification-banner.c"
-             line="236">The #PhoshNotification shown in @self</doc>
+             line="232">The #PhoshNotification shown</doc>
         <type name="Notification"/>
       </property>
     </class>
@@ -56670,7 +56679,13 @@ the child [class@StatusIcon] has an `enabled` property it will be automatically 
 [property@Phosh.QuickSetting:active] property.
 
 When a quick-setting is clicked, [signal@Phosh.QuickSetting::clicked] is emitted. When it is
-long-pressed or right-clicked, [signal@PhoshQuickSetting::long-pressed] is emitted.</doc>
+long-pressed or right-clicked, [signal@PhoshQuickSetting::long-pressed] is emitted.
+
+The common usecase of `long-pressed` is to launch an action (like `settings.launch-panel`). So to
+avoid duplicating this process for each quick-setting, the user can set
+[property@Phosh.QuickSetting:long-press-action-name] and
+[property@Phosh.QuickSetting:long-press-action-target]. The quick-setting then launches that
+appropriate action.</doc>
       <source-position filename="src/quick-setting.h" line="19"/>
       <implements name="Atk.ImplementorIface"/>
       <implements name="Gtk.Buildable"/>
@@ -56712,6 +56727,32 @@ long-pressed or right-clicked, [signal@PhoshQuickSetting::long-pressed] is emitt
           </instance-parameter>
         </parameters>
       </method>
+      <method name="get_long_press_action_name"
+              c:identifier="phosh_quick_setting_get_long_press_action_name"
+              glib:get-property="long-press-action-name">
+        <source-position filename="src/quick-setting.h" line="31"/>
+        <return-value transfer-ownership="none">
+          <type name="utf8" c:type="const char*"/>
+        </return-value>
+        <parameters>
+          <instance-parameter name="self" transfer-ownership="none">
+            <type name="QuickSetting" c:type="PhoshQuickSetting*"/>
+          </instance-parameter>
+        </parameters>
+      </method>
+      <method name="get_long_press_action_target"
+              c:identifier="phosh_quick_setting_get_long_press_action_target"
+              glib:get-property="long-press-action-target">
+        <source-position filename="src/quick-setting.h" line="33"/>
+        <return-value transfer-ownership="none">
+          <type name="utf8" c:type="const char*"/>
+        </return-value>
+        <parameters>
+          <instance-parameter name="self" transfer-ownership="none">
+            <type name="QuickSetting" c:type="PhoshQuickSetting*"/>
+          </instance-parameter>
+        </parameters>
+      </method>
       <method name="get_showing_status"
               c:identifier="phosh_quick_setting_get_showing_status"
               glib:get-property="showing-status">
@@ -56730,19 +56771,19 @@ long-pressed or right-clicked, [signal@PhoshQuickSetting::long-pressed] is emitt
               glib:get-property="status-page">
         <doc xml:space="preserve"
              filename="src/quick-setting.c"
-             line="507">Get the current status widget of the quick-setting.</doc>
+             line="582">Get the current status widget of the quick-setting.</doc>
         <source-position filename="src/quick-setting.h" line="29"/>
         <return-value transfer-ownership="none">
           <doc xml:space="preserve"
                filename="src/quick-setting.c"
-               line="513">The status-page or `NULL`.</doc>
+               line="588">The status-page or `NULL`.</doc>
           <type name="StatusPage" c:type="PhoshStatusPage*"/>
         </return-value>
         <parameters>
           <instance-parameter name="self" transfer-ownership="none">
             <doc xml:space="preserve"
                  filename="src/quick-setting.c"
-                 line="509">A quick-setting</doc>
+                 line="584">A quick-setting</doc>
             <type name="QuickSetting" c:type="PhoshQuickSetting*"/>
           </instance-parameter>
         </parameters>
@@ -56779,6 +56820,38 @@ long-pressed or right-clicked, [signal@PhoshQuickSetting::long-pressed] is emitt
           </parameter>
         </parameters>
       </method>
+      <method name="set_long_press_action_name"
+              c:identifier="phosh_quick_setting_set_long_press_action_name"
+              glib:set-property="long-press-action-name">
+        <source-position filename="src/quick-setting.h" line="30"/>
+        <return-value transfer-ownership="none">
+          <type name="none" c:type="void"/>
+        </return-value>
+        <parameters>
+          <instance-parameter name="self" transfer-ownership="none">
+            <type name="QuickSetting" c:type="PhoshQuickSetting*"/>
+          </instance-parameter>
+          <parameter name="action_name" transfer-ownership="none">
+            <type name="utf8" c:type="const char*"/>
+          </parameter>
+        </parameters>
+      </method>
+      <method name="set_long_press_action_target"
+              c:identifier="phosh_quick_setting_set_long_press_action_target"
+              glib:set-property="long-press-action-target">
+        <source-position filename="src/quick-setting.h" line="32"/>
+        <return-value transfer-ownership="none">
+          <type name="none" c:type="void"/>
+        </return-value>
+        <parameters>
+          <instance-parameter name="self" transfer-ownership="none">
+            <type name="QuickSetting" c:type="PhoshQuickSetting*"/>
+          </instance-parameter>
+          <parameter name="action_target" transfer-ownership="none">
+            <type name="utf8" c:type="const char*"/>
+          </parameter>
+        </parameters>
+      </method>
       <method name="set_showing_status"
               c:identifier="phosh_quick_setting_set_showing_status"
               glib:set-property="showing-status">
@@ -56800,7 +56873,7 @@ long-pressed or right-clicked, [signal@PhoshQuickSetting::long-pressed] is emitt
               glib:set-property="status-page">
         <doc xml:space="preserve"
              filename="src/quick-setting.c"
-             line="465">Set the status-page of the quick-setting.</doc>
+             line="540">Set the status-page of the quick-setting.</doc>
         <source-position filename="src/quick-setting.h" line="28"/>
         <return-value transfer-ownership="none">
           <type name="none" c:type="void"/>
@@ -56809,13 +56882,13 @@ long-pressed or right-clicked, [signal@PhoshQuickSetting::long-pressed] is emitt
           <instance-parameter name="self" transfer-ownership="none">
             <doc xml:space="preserve"
                  filename="src/quick-setting.c"
-                 line="467">A quick-setting</doc>
+                 line="542">A quick-setting</doc>
             <type name="QuickSetting" c:type="PhoshQuickSetting*"/>
           </instance-parameter>
           <parameter name="status_page" transfer-ownership="none">
             <doc xml:space="preserve"
                  filename="src/quick-setting.c"
-                 line="468">A status-page or `NULL`</doc>
+                 line="543">A status-page or `NULL`</doc>
             <type name="StatusPage" c:type="PhoshStatusPage*"/>
           </parameter>
         </parameters>
@@ -56828,7 +56901,7 @@ long-pressed or right-clicked, [signal@PhoshQuickSetting::long-pressed] is emitt
                 default-value="FALSE">
         <doc xml:space="preserve"
              filename="src/quick-setting.c"
-             line="270">The active state of the child.</doc>
+             line="327">The active state of the child.</doc>
         <type name="gboolean" c:type="gboolean"/>
       </property>
       <property name="can-show-status"
@@ -56839,8 +56912,30 @@ long-pressed or right-clicked, [signal@PhoshQuickSetting::long-pressed] is emitt
                 default-value="FALSE">
         <doc xml:space="preserve"
              filename="src/quick-setting.c"
-             line="292">If the child can display its status.</doc>
+             line="345">If the child can display its status.</doc>
         <type name="gboolean" c:type="gboolean"/>
+      </property>
+      <property name="long-press-action-name"
+                writable="1"
+                transfer-ownership="none"
+                setter="set_long_press_action_name"
+                getter="get_long_press_action_name"
+                default-value="NULL">
+        <doc xml:space="preserve"
+             filename="src/quick-setting.c"
+             line="363">Action name to trigger on long-press.</doc>
+        <type name="utf8" c:type="gchar*"/>
+      </property>
+      <property name="long-press-action-target"
+                writable="1"
+                transfer-ownership="none"
+                setter="set_long_press_action_target"
+                getter="get_long_press_action_target"
+                default-value="NULL">
+        <doc xml:space="preserve"
+             filename="src/quick-setting.c"
+             line="372">Action target for `long-press-action-name`.</doc>
+        <type name="utf8" c:type="gchar*"/>
       </property>
       <property name="showing-status"
                 writable="1"
@@ -56850,7 +56945,7 @@ long-pressed or right-clicked, [signal@PhoshQuickSetting::long-pressed] is emitt
                 default-value="FALSE">
         <doc xml:space="preserve"
              filename="src/quick-setting.c"
-             line="281">If the child is displaying its status.</doc>
+             line="336">If the child is displaying its status.</doc>
         <type name="gboolean" c:type="gboolean"/>
       </property>
       <property name="status-page"
@@ -56860,7 +56955,7 @@ long-pressed or right-clicked, [signal@PhoshQuickSetting::long-pressed] is emitt
                 getter="get_status_page">
         <doc xml:space="preserve"
              filename="src/quick-setting.c"
-             line="303">The status-page.</doc>
+             line="354">The status-page.</doc>
         <type name="StatusPage"/>
       </property>
       <field name="parent_instance">
@@ -56904,13 +56999,13 @@ long-pressed or right-clicked, [signal@PhoshQuickSetting::long-pressed] is emitt
            glib:type-struct="QuickSettingsClass">
       <doc xml:space="preserve"
            filename="src/quick-settings.c"
-           line="26">A widget to display quick-settings using [class@Phosh.QuickSettingsBox].
+           line="25">A widget to display quick-settings using [class@Phosh.QuickSettingsBox].
 
 `PhoshQuickSettings` holds the default quick-settings and those loaded as plugins. It manages
 their interaction with user by launching appropriate actions.
 
 For example, tapping a Wi-Fi quick-setting would toggle its off/on state. Long pressing a
-Bluetooth quick-setting would launch the Bluetooth settings.</doc>
+rotation quick-setting would change the rotation configuration.</doc>
       <source-position filename="src/quick-settings.h" line="14"/>
       <implements name="Atk.ImplementorIface"/>
       <implements name="Gtk.Buildable"/>
@@ -57053,7 +57148,7 @@ advised to add the box to a vertically-scrollable parent.</doc>
                 default-value="TRUE">
         <doc xml:space="preserve"
              filename="src/quick-settings-box.c"
-             line="725">If the box can show status of its children.</doc>
+             line="764">If the box can show status of its children.</doc>
         <type name="gboolean" c:type="gboolean"/>
       </property>
       <property name="max-columns"
@@ -57072,7 +57167,7 @@ advised to add the box to a vertically-scrollable parent.</doc>
                 default-value="0">
         <doc xml:space="preserve"
              filename="src/quick-settings-box.c"
-             line="714">The spacing between the children.</doc>
+             line="755">The spacing between the children.</doc>
         <type name="guint" c:type="guint"/>
       </property>
     </class>

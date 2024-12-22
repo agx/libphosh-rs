@@ -9,9 +9,9 @@ keywords = ["phosh", "gnome"]
 description = "FFI bindings for libphosh"
 license = "MIT"
 
-[package.metadata.system-deps.libphosh_0_43]
-name = "libphosh-0.43"
-version = "0.43"
+[package.metadata.system-deps.libphosh_0_44]
+name = "libphosh-0.44"
+version = "0.44"
 
 [package.metadata.docs.rs]
 rustc-args = ["--cfg", "docsrs"]

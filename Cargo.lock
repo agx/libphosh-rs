@@ -409,7 +409,7 @@ dependencies = [
 
 [[package]]
 name = "libphosh"
-version = "0.0.3"
+version = "0.0.5"
 dependencies = [
  "gdk",
  "gio",
@@ -421,7 +421,7 @@ dependencies = [
 
 [[package]]
 name = "libphosh-sys"
-version = "0.0.3"
+version = "0.0.5"
 dependencies = [
  "gdk-pixbuf-sys",
  "gdk-sys",

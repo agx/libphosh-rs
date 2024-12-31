@@ -1,6 +1,6 @@
 [package]
 name = "libphosh"
-version = "0.0.3"
+version = "0.0.5"
 authors = ["Guido Günther <agx@sigxcpu.org>"]
 edition = "2021"
 readme = "../README.md"
@@ -65,4 +65,4 @@ features = ["v3_24"]
 [dependencies.ffi]
 package = "libphosh-sys"
 path = './sys'
-version = "0.0.3"
+version = "0.0.5"

@@ -159,7 +159,6 @@ ignore = [
     "Phosh.OsdWindow",
     "Phosh.Osk0SmPuriOSK0Proxy",
     "Phosh.Osk0SmPuriOSK0Skeleton",
-    "Phosh.OskButton",
     "Phosh.OskManager",
     "Phosh.Overview",
     "Phosh.PasswordEntry",

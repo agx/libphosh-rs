@@ -17,11 +17,6 @@ glib::wrapper! {
 }
 
 impl LockscreenManager {
-    //#[doc(alias = "phosh_lockscreen_manager_new")]
-    //pub fn new(calls_manager: /*Ignored*/&CallsManager) -> LockscreenManager {
-    //    unsafe { TODO: call ffi:phosh_lockscreen_manager_new() }
-    //}
-
             // rustdoc-stripper-ignore-next
             /// Creates a new builder-pattern struct instance to construct [`LockscreenManager`] objects.
             ///
@@ -92,11 +87,6 @@ impl LockscreenManager {
         }
     }
 
-    //#[doc(alias = "calls-manager")]
-    //pub fn calls_manager(&self) -> /*Ignored*/Option<CallsManager> {
-    //    ObjectExt::property(self, "calls-manager")
-    //}
-
     #[doc(alias = "wakeup-outputs")]
     pub fn connect_wakeup_outputs<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn wakeup_outputs_trampoline<F: Fn(&LockscreenManager) + 'static>(this: *mut ffi::PhoshLockscreenManager, f: glib::ffi::gpointer) {
@@ -124,12 +114,6 @@ impl LockscreenManager {
     }
 }
 
-impl Default for LockscreenManager {
-                     fn default() -> Self {
-                         glib::object::Object::new::<Self>()
-                     }
-                 }
-
 // rustdoc-stripper-ignore-next
         /// A [builder-pattern] type to construct [`LockscreenManager`] objects.
         ///
@@ -143,10 +127,6 @@ pub struct LockscreenManagerBuilder {
         fn new() -> Self {
             Self { builder: glib::object::Object::builder() }
         }
-
-                            //pub fn calls_manager(self, calls_manager: /*Ignored*/&CallsManager) -> Self {
-                        //    Self { builder: self.builder.property("calls-manager", calls_manager), }
-                        //}
 
                             pub fn locked(self, locked: bool) -> Self {
                             Self { builder: self.builder.property("locked", locked), }

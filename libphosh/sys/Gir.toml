@@ -16,6 +16,8 @@ external_libraries = [
 ]
 
 ignore = [
+    "Phosh.DBusScreenshot",
+    "Phosh.DBusScreenshotIface",
     "Phosh.DBusScreenshotProxy",
     "Phosh.DBusScreenshotSkeleton",
     "Phosh.QuickSettings",

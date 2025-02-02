@@ -20,11 +20,6 @@ impl Lockscreen {
         pub const NONE: Option<&'static Lockscreen> = None;
     
 
-    //#[doc(alias = "phosh_lockscreen_new")]
-    //pub fn new(lockscreen_type: glib::types::Type, layer_shell: /*Unimplemented*/Option<Basic: Pointer>, wl_output: /*Unimplemented*/Option<Basic: Pointer>, calls_manager: /*Ignored*/&CallsManager) -> Lockscreen {
-    //    unsafe { TODO: call ffi:phosh_lockscreen_new() }
-    //}
-
             // rustdoc-stripper-ignore-next
             /// Creates a new builder-pattern struct instance to construct [`Lockscreen`] objects.
             ///
@@ -34,12 +29,6 @@ impl Lockscreen {
             }
         
 }
-
-impl Default for Lockscreen {
-                     fn default() -> Self {
-                         glib::object::Object::new::<Self>()
-                     }
-                 }
 
 // rustdoc-stripper-ignore-next
         /// A [builder-pattern] type to construct [`Lockscreen`] objects.
@@ -54,10 +43,6 @@ pub struct LockscreenBuilder {
         fn new() -> Self {
             Self { builder: glib::object::Object::builder() }
         }
-
-                            //pub fn calls_manager(self, calls_manager: /*Ignored*/&CallsManager) -> Self {
-                        //    Self { builder: self.builder.property("calls-manager", calls_manager), }
-                        //}
 
                             pub fn require_unlock(self, require_unlock: bool) -> Self {
                             Self { builder: self.builder.property("require-unlock", require_unlock), }
@@ -477,11 +462,6 @@ pub trait LockscreenExt: IsA<Lockscreen> + sealed::Sealed + 'static {
             ffi::phosh_lockscreen_shake_pin_entry(self.as_ref().to_glib_none().0);
         }
     }
-
-    //#[doc(alias = "calls-manager")]
-    //fn calls_manager(&self) -> /*Ignored*/Option<CallsManager> {
-    //    ObjectExt::property(self.as_ref(), "calls-manager")
-    //}
 
     #[doc(alias = "require-unlock")]
     fn requires_unlock(&self) -> bool {

@@ -13,11 +13,11 @@ and/or use gtk-doc annotations.  -->
   <include name="Gtk" version="3.0"/>
   <include name="Handy" version="1"/>
   <include name="NM" version="1.0"/>
-  <package name="libphosh-0.44"/>
+  <package name="libphosh-0.45"/>
   <c:include name="libphosh.h"/>
   <namespace name="Phosh"
              version="0"
-             shared-library="libphosh-0.44.so.0"
+             shared-library="libphosh-0.45.so.0"
              c:identifier-prefixes="Phosh"
              c:symbol-prefixes="phosh">
     <function-macro name="DBUS_IS_SCREENSHOT"

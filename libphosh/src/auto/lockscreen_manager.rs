@@ -58,14 +58,6 @@ impl LockscreenManager {
         }
     }
 
-    #[doc(alias = "phosh_lockscreen_manager_get_timeout")]
-    #[doc(alias = "get_timeout")]
-    pub fn timeout(&self) -> i32 {
-        unsafe {
-            ffi::phosh_lockscreen_manager_get_timeout(self.to_glib_none().0)
-        }
-    }
-
     #[doc(alias = "phosh_lockscreen_manager_set_locked")]
     pub fn set_locked(&self, state: bool) {
         unsafe {
@@ -77,13 +69,6 @@ impl LockscreenManager {
     pub fn set_page(&self, page: LockscreenPage) -> bool {
         unsafe {
             from_glib(ffi::phosh_lockscreen_manager_set_page(self.to_glib_none().0, page.into_glib()))
-        }
-    }
-
-    #[doc(alias = "phosh_lockscreen_manager_set_timeout")]
-    pub fn set_timeout(&self, timeout: i32) {
-        unsafe {
-            ffi::phosh_lockscreen_manager_set_timeout(self.to_glib_none().0, timeout);
         }
     }
 

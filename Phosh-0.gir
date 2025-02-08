@@ -2581,34 +2581,14 @@ See phosh_dbus_screenshot_proxy_new_for_bus_sync() for the synchronous, blocking
 #PhoshLayerSurface allows to use a Wayland surface backed by the
 layer-shell protocol as #GtkWindow. This allows to render e.g. panels and
 backgrounds using GTK.</doc>
-      <source-position filename="src/layersurface.h" line="31"/>
+      <source-position filename="src/layersurface.h" line="40"/>
       <implements name="Atk.ImplementorIface"/>
       <implements name="Gtk.Buildable"/>
-      <constructor name="new" c:identifier="phosh_layer_surface_new">
-        <source-position filename="src/layersurface.h" line="33"/>
-        <return-value transfer-ownership="none">
-          <type name="Gtk.Widget" c:type="GtkWidget*"/>
-        </return-value>
-        <parameters>
-          <parameter name="layer_shell"
-                     transfer-ownership="none"
-                     nullable="1"
-                     allow-none="1">
-            <type name="gpointer" c:type="gpointer"/>
-          </parameter>
-          <parameter name="wl_output"
-                     transfer-ownership="none"
-                     nullable="1"
-                     allow-none="1">
-            <type name="gpointer" c:type="gpointer"/>
-          </parameter>
-        </parameters>
-      </constructor>
       <virtual-method name="configured">
         <doc xml:space="preserve"
              filename="src/layersurface.h"
-             line="22">invoked when layer surface is configured</doc>
-        <source-position filename="src/layersurface.h" line="30"/>
+             line="20">invoked when layer surface is configured</doc>
+        <source-position filename="src/layersurface.h" line="28"/>
         <return-value transfer-ownership="none">
           <type name="none" c:type="void"/>
         </return-value>
@@ -2618,348 +2598,6 @@ backgrounds using GTK.</doc>
           </instance-parameter>
         </parameters>
       </virtual-method>
-      <method name="get_configured_height"
-              c:identifier="phosh_layer_surface_get_configured_height"
-              glib:get-property="configured-height">
-        <source-position filename="src/layersurface.h" line="59"/>
-        <return-value transfer-ownership="none">
-          <type name="gint" c:type="int"/>
-        </return-value>
-        <parameters>
-          <instance-parameter name="self" transfer-ownership="none">
-            <type name="LayerSurface" c:type="PhoshLayerSurface*"/>
-          </instance-parameter>
-        </parameters>
-      </method>
-      <method name="get_configured_width"
-              c:identifier="phosh_layer_surface_get_configured_width"
-              glib:get-property="configured-width">
-        <source-position filename="src/layersurface.h" line="58"/>
-        <return-value transfer-ownership="none">
-          <type name="gint" c:type="int"/>
-        </return-value>
-        <parameters>
-          <instance-parameter name="self" transfer-ownership="none">
-            <type name="LayerSurface" c:type="PhoshLayerSurface*"/>
-          </instance-parameter>
-        </parameters>
-      </method>
-      <method name="get_layer"
-              c:identifier="phosh_layer_surface_get_layer"
-              glib:get-property="layer">
-        <doc xml:space="preserve"
-             filename="src/layersurface.c"
-             line="827">Gets the surfaces current layer.</doc>
-        <source-position filename="src/layersurface.h" line="49"/>
-        <return-value transfer-ownership="none">
-          <doc xml:space="preserve"
-               filename="src/layersurface.c"
-               line="833">The layer</doc>
-          <type name="guint32" c:type="guint32"/>
-        </return-value>
-        <parameters>
-          <instance-parameter name="self" transfer-ownership="none">
-            <doc xml:space="preserve"
-                 filename="src/layersurface.c"
-                 line="829">The #PhoshLayerSurface</doc>
-            <type name="LayerSurface" c:type="PhoshLayerSurface*"/>
-          </instance-parameter>
-        </parameters>
-      </method>
-      <method name="get_layer_surface"
-              c:identifier="phosh_layer_surface_get_layer_surface">
-        <source-position filename="src/layersurface.h" line="35"/>
-        <return-value transfer-ownership="none" nullable="1">
-          <type name="gpointer" c:type="zwlr_layer_surface_v1*"/>
-        </return-value>
-        <parameters>
-          <instance-parameter name="self" transfer-ownership="none">
-            <type name="LayerSurface" c:type="PhoshLayerSurface*"/>
-          </instance-parameter>
-        </parameters>
-      </method>
-      <method name="get_margins"
-              c:identifier="phosh_layer_surface_get_margins">
-        <source-position filename="src/layersurface.h" line="53"/>
-        <return-value transfer-ownership="none">
-          <type name="none" c:type="void"/>
-        </return-value>
-        <parameters>
-          <instance-parameter name="self" transfer-ownership="none">
-            <type name="LayerSurface" c:type="PhoshLayerSurface*"/>
-          </instance-parameter>
-          <parameter name="top" transfer-ownership="none">
-            <type name="gint" c:type="int*"/>
-          </parameter>
-          <parameter name="right" transfer-ownership="none">
-            <type name="gint" c:type="int*"/>
-          </parameter>
-          <parameter name="bottom" transfer-ownership="none">
-            <type name="gint" c:type="int*"/>
-          </parameter>
-          <parameter name="left" transfer-ownership="none">
-            <type name="gint" c:type="int*"/>
-          </parameter>
-        </parameters>
-      </method>
-      <method name="get_wl_output"
-              c:identifier="phosh_layer_surface_get_wl_output"
-              glib:get-property="wl-output">
-        <doc xml:space="preserve"
-             filename="src/layersurface.c"
-             line="872">Gets the output.</doc>
-        <source-position filename="src/layersurface.h" line="66"/>
-        <return-value transfer-ownership="none" nullable="1">
-          <doc xml:space="preserve"
-               filename="src/layersurface.c"
-               line="878">The output</doc>
-          <type name="gpointer" c:type="gpointer"/>
-        </return-value>
-        <parameters>
-          <instance-parameter name="self" transfer-ownership="none">
-            <doc xml:space="preserve"
-                 filename="src/layersurface.c"
-                 line="874">The #PhoshLayerSurface</doc>
-            <type name="LayerSurface" c:type="PhoshLayerSurface*"/>
-          </instance-parameter>
-        </parameters>
-      </method>
-      <method name="get_wl_surface"
-              c:identifier="phosh_layer_surface_get_wl_surface">
-        <doc xml:space="preserve"
-             filename="src/layersurface.c"
-             line="666">Get the layer wayland surface or #NULL if the window
-is not yet realized.</doc>
-        <source-position filename="src/layersurface.h" line="36"/>
-        <return-value transfer-ownership="none" nullable="1">
-          <type name="gpointer" c:type="wl_surface*"/>
-        </return-value>
-        <parameters>
-          <instance-parameter name="self" transfer-ownership="none">
-            <doc xml:space="preserve"
-                 filename="src/layersurface.c"
-                 line="668">The #PhoshLayerSurface</doc>
-            <type name="LayerSurface" c:type="PhoshLayerSurface*"/>
-          </instance-parameter>
-        </parameters>
-      </method>
-      <method name="set_alpha" c:identifier="phosh_layer_surface_set_alpha">
-        <source-position filename="src/layersurface.h" line="60"/>
-        <return-value transfer-ownership="none">
-          <type name="none" c:type="void"/>
-        </return-value>
-        <parameters>
-          <instance-parameter name="self" transfer-ownership="none">
-            <type name="LayerSurface" c:type="PhoshLayerSurface*"/>
-          </instance-parameter>
-          <parameter name="alpha" transfer-ownership="none">
-            <type name="gdouble" c:type="double"/>
-          </parameter>
-        </parameters>
-      </method>
-      <method name="set_exclusive_zone"
-              c:identifier="phosh_layer_surface_set_exclusive_zone"
-              glib:set-property="exclusive-zone">
-        <doc xml:space="preserve"
-             filename="src/layersurface.c"
-             line="771">Set exclusive zone of a layer surface.</doc>
-        <source-position filename="src/layersurface.h" line="45"/>
-        <return-value transfer-ownership="none">
-          <type name="none" c:type="void"/>
-        </return-value>
-        <parameters>
-          <instance-parameter name="self" transfer-ownership="none">
-            <doc xml:space="preserve"
-                 filename="src/layersurface.c"
-                 line="773">The #PhoshLayerSurface</doc>
-            <type name="LayerSurface" c:type="PhoshLayerSurface*"/>
-          </instance-parameter>
-          <parameter name="zone" transfer-ownership="none">
-            <doc xml:space="preserve"
-                 filename="src/layersurface.c"
-                 line="774">Size of the exclusive zone.</doc>
-            <type name="gint" c:type="int"/>
-          </parameter>
-        </parameters>
-      </method>
-      <method name="set_kbd_interactivity"
-              c:identifier="phosh_layer_surface_set_kbd_interactivity"
-              glib:set-property="kbd-interactivity">
-        <source-position filename="src/layersurface.h" line="47"/>
-        <return-value transfer-ownership="none">
-          <type name="none" c:type="void"/>
-        </return-value>
-        <parameters>
-          <instance-parameter name="self" transfer-ownership="none">
-            <type name="LayerSurface" c:type="PhoshLayerSurface*"/>
-          </instance-parameter>
-          <parameter name="interactivity" transfer-ownership="none">
-            <type name="gboolean" c:type="gboolean"/>
-          </parameter>
-        </parameters>
-      </method>
-      <method name="set_layer"
-              c:identifier="phosh_layer_surface_set_layer"
-              glib:set-property="layer">
-        <doc xml:space="preserve"
-             filename="src/layersurface.c"
-             line="846">Sets the layer a layer-surface belongs to `layer`.</doc>
-        <source-position filename="src/layersurface.h" line="50"/>
-        <return-value transfer-ownership="none">
-          <type name="none" c:type="void"/>
-        </return-value>
-        <parameters>
-          <instance-parameter name="self" transfer-ownership="none">
-            <doc xml:space="preserve"
-                 filename="src/layersurface.c"
-                 line="848">The #PhoshLayerSurface</doc>
-            <type name="LayerSurface" c:type="PhoshLayerSurface*"/>
-          </instance-parameter>
-          <parameter name="layer" transfer-ownership="none">
-            <doc xml:space="preserve"
-                 filename="src/layersurface.c"
-                 line="849">The layer.</doc>
-            <type name="guint32" c:type="guint32"/>
-          </parameter>
-        </parameters>
-      </method>
-      <method name="set_margins"
-              c:identifier="phosh_layer_surface_set_margins">
-        <doc xml:space="preserve"
-             filename="src/layersurface.c"
-             line="725">Set anchor margins of a layer surface.</doc>
-        <source-position filename="src/layersurface.h" line="40"/>
-        <return-value transfer-ownership="none">
-          <type name="none" c:type="void"/>
-        </return-value>
-        <parameters>
-          <instance-parameter name="self" transfer-ownership="none">
-            <doc xml:space="preserve"
-                 filename="src/layersurface.c"
-                 line="727">The #PhoshLayerSurface</doc>
-            <type name="LayerSurface" c:type="PhoshLayerSurface*"/>
-          </instance-parameter>
-          <parameter name="top" transfer-ownership="none">
-            <doc xml:space="preserve"
-                 filename="src/layersurface.c"
-                 line="728">the top margin in pixels</doc>
-            <type name="gint" c:type="int"/>
-          </parameter>
-          <parameter name="right" transfer-ownership="none">
-            <doc xml:space="preserve"
-                 filename="src/layersurface.c"
-                 line="729">the right margin in pixels</doc>
-            <type name="gint" c:type="int"/>
-          </parameter>
-          <parameter name="bottom" transfer-ownership="none">
-            <doc xml:space="preserve"
-                 filename="src/layersurface.c"
-                 line="730">the bottom margin in pixels</doc>
-            <type name="gint" c:type="int"/>
-          </parameter>
-          <parameter name="left" transfer-ownership="none">
-            <doc xml:space="preserve"
-                 filename="src/layersurface.c"
-                 line="731">the left margin in pixels</doc>
-            <type name="gint" c:type="int"/>
-          </parameter>
-        </parameters>
-      </method>
-      <method name="set_size" c:identifier="phosh_layer_surface_set_size">
-        <doc xml:space="preserve"
-             filename="src/layersurface.c"
-             line="684">Set the size of a layer surface. A value of '-1' indicates 'use old value'</doc>
-        <source-position filename="src/layersurface.h" line="37"/>
-        <return-value transfer-ownership="none">
-          <type name="none" c:type="void"/>
-        </return-value>
-        <parameters>
-          <instance-parameter name="self" transfer-ownership="none">
-            <doc xml:space="preserve"
-                 filename="src/layersurface.c"
-                 line="686">The #PhoshLayerSurface</doc>
-            <type name="LayerSurface" c:type="PhoshLayerSurface*"/>
-          </instance-parameter>
-          <parameter name="width" transfer-ownership="none">
-            <doc xml:space="preserve"
-                 filename="src/layersurface.c"
-                 line="687">the height in pixels</doc>
-            <type name="gint" c:type="int"/>
-          </parameter>
-          <parameter name="height" transfer-ownership="none">
-            <doc xml:space="preserve"
-                 filename="src/layersurface.c"
-                 line="688">the width in pixels</doc>
-            <type name="gint" c:type="int"/>
-          </parameter>
-        </parameters>
-      </method>
-      <method name="set_stacked_above"
-              c:identifier="phosh_layer_surface_set_stacked_above">
-        <doc xml:space="preserve"
-             filename="src/layersurface.c"
-             line="971">Stacks the surface `self` directly above `target`.</doc>
-        <source-position filename="src/layersurface.h" line="62"/>
-        <return-value transfer-ownership="none">
-          <type name="none" c:type="void"/>
-        </return-value>
-        <parameters>
-          <instance-parameter name="self" transfer-ownership="none">
-            <doc xml:space="preserve"
-                 filename="src/layersurface.c"
-                 line="973">The surface to be stacked</doc>
-            <type name="LayerSurface" c:type="PhoshLayerSurface*"/>
-          </instance-parameter>
-          <parameter name="target" transfer-ownership="none">
-            <doc xml:space="preserve"
-                 filename="src/layersurface.c"
-                 line="974">The target surface</doc>
-            <type name="LayerSurface" c:type="PhoshLayerSurface*"/>
-          </parameter>
-        </parameters>
-      </method>
-      <method name="set_stacked_below"
-              c:identifier="phosh_layer_surface_set_stacked_below">
-        <doc xml:space="preserve"
-             filename="src/layersurface.c"
-             line="994">Stacks the surface `self` directly below `target`.</doc>
-        <source-position filename="src/layersurface.h" line="64"/>
-        <return-value transfer-ownership="none">
-          <type name="none" c:type="void"/>
-        </return-value>
-        <parameters>
-          <instance-parameter name="self" transfer-ownership="none">
-            <doc xml:space="preserve"
-                 filename="src/layersurface.c"
-                 line="996">The surface to be stacked</doc>
-            <type name="LayerSurface" c:type="PhoshLayerSurface*"/>
-          </instance-parameter>
-          <parameter name="target" transfer-ownership="none">
-            <doc xml:space="preserve"
-                 filename="src/layersurface.c"
-                 line="997">The target surface</doc>
-            <type name="LayerSurface" c:type="PhoshLayerSurface*"/>
-          </parameter>
-        </parameters>
-      </method>
-      <method name="wl_surface_commit"
-              c:identifier="phosh_layer_surface_wl_surface_commit">
-        <doc xml:space="preserve"
-             filename="src/layersurface.c"
-             line="891">Forces a commit of layer surface's state.</doc>
-        <source-position filename="src/layersurface.h" line="52"/>
-        <return-value transfer-ownership="none">
-          <type name="none" c:type="void"/>
-        </return-value>
-        <parameters>
-          <instance-parameter name="self" transfer-ownership="none">
-            <doc xml:space="preserve"
-                 filename="src/layersurface.c"
-                 line="893">The #PhoshLayerSurface</doc>
-            <type name="LayerSurface" c:type="PhoshLayerSurface*"/>
-          </instance-parameter>
-        </parameters>
-      </method>
       <property name="anchor"
                 writable="1"
                 transfer-ownership="none"
@@ -2968,20 +2606,17 @@ is not yet realized.</doc>
       </property>
       <property name="configured-height"
                 transfer-ownership="none"
-                getter="get_configured_height"
                 default-value="0">
         <type name="guint" c:type="guint"/>
       </property>
       <property name="configured-width"
                 transfer-ownership="none"
-                getter="get_configured_width"
                 default-value="0">
         <type name="guint" c:type="guint"/>
       </property>
       <property name="exclusive-zone"
                 writable="1"
                 transfer-ownership="none"
-                setter="set_exclusive_zone"
                 default-value="0">
         <type name="gint" c:type="gint"/>
       </property>
@@ -2994,7 +2629,6 @@ is not yet realized.</doc>
       <property name="kbd-interactivity"
                 writable="1"
                 transfer-ownership="none"
-                setter="set_kbd_interactivity"
                 default-value="FALSE">
         <type name="gboolean" c:type="gboolean"/>
       </property>
@@ -3002,8 +2636,6 @@ is not yet realized.</doc>
                 writable="1"
                 construct="1"
                 transfer-ownership="none"
-                setter="set_layer"
-                getter="get_layer"
                 default-value="0">
         <type name="guint" c:type="guint"/>
       </property>
@@ -3043,10 +2675,7 @@ is not yet realized.</doc>
                 default-value="0">
         <type name="guint" c:type="guint"/>
       </property>
-      <property name="wl-output"
-                writable="1"
-                transfer-ownership="none"
-                getter="get_wl_output">
+      <property name="wl-output" writable="1" transfer-ownership="none">
         <type name="gpointer" c:type="gpointer"/>
       </property>
       <field name="parent_instance">
@@ -3065,19 +2694,19 @@ compositor.</doc>
     <record name="LayerSurfaceClass"
             c:type="PhoshLayerSurfaceClass"
             glib:is-gtype-struct-for="LayerSurface">
-      <source-position filename="src/layersurface.h" line="31"/>
+      <source-position filename="src/layersurface.h" line="40"/>
       <field name="parent_class">
         <doc xml:space="preserve"
              filename="src/layersurface.h"
-             line="21">The parent class</doc>
+             line="19">The parent class</doc>
         <type name="Gtk.WindowClass" c:type="GtkWindowClass"/>
       </field>
       <field name="configured">
         <doc xml:space="preserve"
              filename="src/layersurface.h"
-             line="22">invoked when layer surface is configured</doc>
+             line="20">invoked when layer surface is configured</doc>
         <callback name="configured">
-          <source-position filename="src/layersurface.h" line="30"/>
+          <source-position filename="src/layersurface.h" line="28"/>
           <return-value transfer-ownership="none">
             <type name="none" c:type="void"/>
           </return-value>
@@ -3086,6 +2715,78 @@ compositor.</doc>
               <type name="LayerSurface" c:type="PhoshLayerSurface*"/>
             </parameter>
           </parameters>
+        </callback>
+      </field>
+      <field name="_phosh_reserved1" introspectable="0">
+        <callback name="_phosh_reserved1">
+          <source-position filename="src/layersurface.h" line="31"/>
+          <return-value transfer-ownership="none">
+            <type name="none" c:type="void"/>
+          </return-value>
+        </callback>
+      </field>
+      <field name="_phosh_reserved2" introspectable="0">
+        <callback name="_phosh_reserved2">
+          <source-position filename="src/layersurface.h" line="32"/>
+          <return-value transfer-ownership="none">
+            <type name="none" c:type="void"/>
+          </return-value>
+        </callback>
+      </field>
+      <field name="_phosh_reserved3" introspectable="0">
+        <callback name="_phosh_reserved3">
+          <source-position filename="src/layersurface.h" line="33"/>
+          <return-value transfer-ownership="none">
+            <type name="none" c:type="void"/>
+          </return-value>
+        </callback>
+      </field>
+      <field name="_phosh_reserved4" introspectable="0">
+        <callback name="_phosh_reserved4">
+          <source-position filename="src/layersurface.h" line="34"/>
+          <return-value transfer-ownership="none">
+            <type name="none" c:type="void"/>
+          </return-value>
+        </callback>
+      </field>
+      <field name="_phosh_reserved5" introspectable="0">
+        <callback name="_phosh_reserved5">
+          <source-position filename="src/layersurface.h" line="35"/>
+          <return-value transfer-ownership="none">
+            <type name="none" c:type="void"/>
+          </return-value>
+        </callback>
+      </field>
+      <field name="_phosh_reserved6" introspectable="0">
+        <callback name="_phosh_reserved6">
+          <source-position filename="src/layersurface.h" line="36"/>
+          <return-value transfer-ownership="none">
+            <type name="none" c:type="void"/>
+          </return-value>
+        </callback>
+      </field>
+      <field name="_phosh_reserved7" introspectable="0">
+        <callback name="_phosh_reserved7">
+          <source-position filename="src/layersurface.h" line="37"/>
+          <return-value transfer-ownership="none">
+            <type name="none" c:type="void"/>
+          </return-value>
+        </callback>
+      </field>
+      <field name="_phosh_reserved8" introspectable="0">
+        <callback name="_phosh_reserved8">
+          <source-position filename="src/layersurface.h" line="38"/>
+          <return-value transfer-ownership="none">
+            <type name="none" c:type="void"/>
+          </return-value>
+        </callback>
+      </field>
+      <field name="_phosh_reserved9" introspectable="0">
+        <callback name="_phosh_reserved9">
+          <source-position filename="src/layersurface.h" line="39"/>
+          <return-value transfer-ownership="none">
+            <type name="none" c:type="void"/>
+          </return-value>
         </callback>
       </field>
     </record>
@@ -3098,7 +2799,7 @@ compositor.</doc>
            glib:type-struct="LockscreenClass">
       <doc xml:space="preserve"
            filename="src/lockscreen.c"
-           line="38">The main lock screen
+           line="39">The main lock screen
 
 The lock screen displayed on the primary output featuring the clock
 and unlock keypad. It handles displaying ongoing calls when the
@@ -3132,7 +2833,7 @@ Other outputs are locked via PhoshLockshields.
               c:identifier="phosh_lockscreen_add_extra_page">
         <doc xml:space="preserve"
              filename="src/lockscreen.c"
-             line="1270">Inserts a custom widget into the "extra" page of the lockscreen. This page sits in-between the
+             line="1271">Inserts a custom widget into the "extra" page of the lockscreen. This page sits in-between the
 info page and the keypad page. By default, this page does not exist and is not used. Once an
 extra page is added, it can be navigated to by swiping and also via calls to
 [method@Lockscreen.set_default_page].</doc>
@@ -3144,13 +2845,13 @@ extra page is added, it can be navigated to by swiping and also via calls to
           <instance-parameter name="self" transfer-ownership="none">
             <doc xml:space="preserve"
                  filename="src/lockscreen.c"
-                 line="1272">The `PhoshLockscreen`</doc>
+                 line="1273">The `PhoshLockscreen`</doc>
             <type name="Lockscreen" c:type="PhoshLockscreen*"/>
           </instance-parameter>
           <parameter name="widget" transfer-ownership="none">
             <doc xml:space="preserve"
                  filename="src/lockscreen.c"
-                 line="1273">The extra #GtkWidget to insert into the lockscreen carousel</doc>
+                 line="1274">The extra #GtkWidget to insert into the lockscreen carousel</doc>
             <type name="Gtk.Widget" c:type="GtkWidget*"/>
           </parameter>
         </parameters>
@@ -3159,7 +2860,7 @@ extra page is added, it can be navigated to by swiping and also via calls to
               c:identifier="phosh_lockscreen_clear_pin_entry">
         <doc xml:space="preserve"
              filename="src/lockscreen.c"
-             line="1230">Clears the current contents of the keypad PIN entry buffer</doc>
+             line="1231">Clears the current contents of the keypad PIN entry buffer</doc>
         <source-position filename="src/lockscreen.h" line="65"/>
         <return-value transfer-ownership="none">
           <type name="none" c:type="void"/>
@@ -3168,7 +2869,7 @@ extra page is added, it can be navigated to by swiping and also via calls to
           <instance-parameter name="self" transfer-ownership="none">
             <doc xml:space="preserve"
                  filename="src/lockscreen.c"
-                 line="1232">The `PhoshLockscreen`</doc>
+                 line="1233">The `PhoshLockscreen`</doc>
             <type name="Lockscreen" c:type="PhoshLockscreen*"/>
           </instance-parameter>
         </parameters>
@@ -3180,14 +2881,14 @@ extra page is added, it can be navigated to by swiping and also via calls to
         <return-value transfer-ownership="none">
           <doc xml:space="preserve"
                filename="src/lockscreen.c"
-               line="1130">The #PhoshLockscreenPage that is currently shown</doc>
+               line="1131">The #PhoshLockscreenPage that is currently shown</doc>
           <type name="LockscreenPage" c:type="PhoshLockscreenPage"/>
         </return-value>
         <parameters>
           <instance-parameter name="self" transfer-ownership="none">
             <doc xml:space="preserve"
                  filename="src/lockscreen.c"
-                 line="1128">The `PhoshLockscreen`</doc>
+                 line="1129">The `PhoshLockscreen`</doc>
             <type name="Lockscreen" c:type="PhoshLockscreen*"/>
           </instance-parameter>
         </parameters>
@@ -3196,19 +2897,19 @@ extra page is added, it can be navigated to by swiping and also via calls to
               c:identifier="phosh_lockscreen_get_pin_entry">
         <doc xml:space="preserve"
              filename="src/lockscreen.c"
-             line="1212">Get the current contents of the keypad PIN entry buffer</doc>
+             line="1213">Get the current contents of the keypad PIN entry buffer</doc>
         <source-position filename="src/lockscreen.h" line="64"/>
         <return-value transfer-ownership="none">
           <doc xml:space="preserve"
                filename="src/lockscreen.c"
-               line="1218">the contents of the entry buffer</doc>
+               line="1219">the contents of the entry buffer</doc>
           <type name="utf8" c:type="const char*"/>
         </return-value>
         <parameters>
           <instance-parameter name="self" transfer-ownership="none">
             <doc xml:space="preserve"
                  filename="src/lockscreen.c"
-                 line="1214">The `PhoshLockscreen`</doc>
+                 line="1215">The `PhoshLockscreen`</doc>
             <type name="Lockscreen" c:type="PhoshLockscreen*"/>
           </instance-parameter>
         </parameters>
@@ -3217,7 +2918,7 @@ extra page is added, it can be navigated to by swiping and also via calls to
               c:identifier="phosh_lockscreen_set_default_page">
         <doc xml:space="preserve"
              filename="src/lockscreen.c"
-             line="1194">Specifies which page should be shown by default when the lockscreen is made visible. This will
+             line="1195">Specifies which page should be shown by default when the lockscreen is made visible. This will
 also be the page that is shown when the keypad idle timer is reached.</doc>
         <source-position filename="src/lockscreen.h" line="61"/>
         <return-value transfer-ownership="none">
@@ -3227,7 +2928,7 @@ also be the page that is shown when the keypad idle timer is reached.</doc>
           <instance-parameter name="self" transfer-ownership="none">
             <doc xml:space="preserve"
                  filename="src/lockscreen.c"
-                 line="1196">The `PhoshLockscreen`
+                 line="1197">The `PhoshLockscreen`
 page: the page to show by default</doc>
             <type name="Lockscreen" c:type="PhoshLockscreen*"/>
           </instance-parameter>
@@ -3239,7 +2940,7 @@ page: the page to show by default</doc>
       <method name="set_page" c:identifier="phosh_lockscreen_set_page">
         <doc xml:space="preserve"
              filename="src/lockscreen.c"
-             line="1156">Scrolls to a specific page in the carousel. The state of the deck
+             line="1157">Scrolls to a specific page in the carousel. The state of the deck
 isn't changed.</doc>
         <source-position filename="src/lockscreen.h" line="58"/>
         <return-value transfer-ownership="none">
@@ -3249,7 +2950,7 @@ isn't changed.</doc>
           <instance-parameter name="self" transfer-ownership="none">
             <doc xml:space="preserve"
                  filename="src/lockscreen.c"
-                 line="1158">The `PhoshLockscreen`
+                 line="1159">The `PhoshLockscreen`
 page: The page to scroll to</doc>
             <type name="Lockscreen" c:type="PhoshLockscreen*"/>
           </instance-parameter>
@@ -3262,7 +2963,7 @@ page: The page to scroll to</doc>
               c:identifier="phosh_lockscreen_set_unlock_status">
         <doc xml:space="preserve"
              filename="src/lockscreen.c"
-             line="1291">Sets the text displayed in the unlock status label.</doc>
+             line="1292">Sets the text displayed in the unlock status label.</doc>
         <source-position filename="src/lockscreen.h" line="68"/>
         <return-value transfer-ownership="none">
           <type name="none" c:type="void"/>
@@ -3271,13 +2972,13 @@ page: The page to scroll to</doc>
           <instance-parameter name="self" transfer-ownership="none">
             <doc xml:space="preserve"
                  filename="src/lockscreen.c"
-                 line="1293">The `PhoshLockscreen`</doc>
+                 line="1294">The `PhoshLockscreen`</doc>
             <type name="Lockscreen" c:type="PhoshLockscreen*"/>
           </instance-parameter>
           <parameter name="status" transfer-ownership="none">
             <doc xml:space="preserve"
                  filename="src/lockscreen.c"
-                 line="1294">The status text</doc>
+                 line="1295">The status text</doc>
             <type name="utf8" c:type="const char*"/>
           </parameter>
         </parameters>
@@ -3286,7 +2987,7 @@ page: The page to scroll to</doc>
               c:identifier="phosh_lockscreen_shake_pin_entry">
         <doc xml:space="preserve"
              filename="src/lockscreen.c"
-             line="1245">Triggers an animation that shakes the PIN entry left and right for a brief period.
+             line="1246">Triggers an animation that shakes the PIN entry left and right for a brief period.
 After the animation is complete, the PIN entry buffer is cleared. Used to visually indicate
 authentication errors.</doc>
         <source-position filename="src/lockscreen.h" line="66"/>
@@ -3297,7 +2998,7 @@ authentication errors.</doc>
           <instance-parameter name="self" transfer-ownership="none">
             <doc xml:space="preserve"
                  filename="src/lockscreen.c"
-                 line="1247">The `PhoshLockscreen`</doc>
+                 line="1248">The `PhoshLockscreen`</doc>
             <type name="Lockscreen" c:type="PhoshLockscreen*"/>
           </instance-parameter>
         </parameters>
@@ -3309,7 +3010,7 @@ authentication errors.</doc>
                 transfer-ownership="none">
         <doc xml:space="preserve"
              filename="src/lockscreen.c"
-             line="978">The calls manager handling incoming and active calls.</doc>
+             line="979">The calls manager handling incoming and active calls.</doc>
         <type/>
       </property>
       <property name="page"
@@ -3318,7 +3019,7 @@ authentication errors.</doc>
                 default-value="PHOSH_LOCKSCREEN_PAGE_UNLOCK">
         <doc xml:space="preserve"
              filename="src/lockscreen.c"
-             line="997">The currently active carousel page</doc>
+             line="998">The currently active carousel page</doc>
         <type name="LockscreenPage"/>
       </property>
       <property name="require-unlock"
@@ -3327,7 +3028,7 @@ authentication errors.</doc>
                 default-value="FALSE">
         <doc xml:space="preserve"
              filename="src/lockscreen.c"
-             line="988">Require entering PIN or password to unlock. If false, unlock by swiping up.</doc>
+             line="989">Require entering PIN or password to unlock. If false, unlock by swiping up.</doc>
         <type name="gboolean" c:type="gboolean"/>
       </property>
       <field name="parent_instance">
@@ -3336,7 +3037,7 @@ authentication errors.</doc>
       <glib:signal name="lockscreen-unlock" when="last">
         <doc xml:space="preserve"
              filename="src/lockscreen.c"
-             line="1010">This signal is emitted when authentication was successful and the
+             line="1011">This signal is emitted when authentication was successful and the
 session should be unlocked.</doc>
         <return-value transfer-ownership="none">
           <type name="none" c:type="void"/>
@@ -3345,7 +3046,7 @@ session should be unlocked.</doc>
       <glib:signal name="wakeup-output" when="last">
         <doc xml:space="preserve"
              filename="src/lockscreen.c"
-             line="1020">Emitted when the output showing the lock screen should be woken
+             line="1021">Emitted when the output showing the lock screen should be woken
 up.</doc>
         <return-value transfer-ownership="none">
           <type name="none" c:type="void"/>
@@ -3470,7 +3171,7 @@ becomes idle or when invoked explicitly via phosh_lockscreen_manager_set_locked(
       <source-position filename="src/lockscreen-manager.h" line="14"/>
       <method name="get_active_time"
               c:identifier="phosh_lockscreen_manager_get_active_time">
-        <source-position filename="src/lockscreen-manager.h" line="31"/>
+        <source-position filename="src/lockscreen-manager.h" line="28"/>
         <return-value transfer-ownership="none">
           <type name="gint64" c:type="gint64"/>
         </return-value>
@@ -3498,7 +3199,7 @@ becomes idle or when invoked explicitly via phosh_lockscreen_manager_set_locked(
         <doc xml:space="preserve"
              filename="src/lockscreen-manager.c"
              line="483">Gets the current [type@Lockscreen], if one exists (NULL otherwise).</doc>
-        <source-position filename="src/lockscreen-manager.h" line="32"/>
+        <source-position filename="src/lockscreen-manager.h" line="29"/>
         <return-value transfer-ownership="none" nullable="1">
           <doc xml:space="preserve"
                filename="src/lockscreen-manager.c"
@@ -3531,18 +3232,6 @@ becomes idle or when invoked explicitly via phosh_lockscreen_manager_set_locked(
           </instance-parameter>
         </parameters>
       </method>
-      <method name="get_timeout"
-              c:identifier="phosh_lockscreen_manager_get_timeout">
-        <source-position filename="src/lockscreen-manager.h" line="30"/>
-        <return-value transfer-ownership="none">
-          <type name="gint" c:type="int"/>
-        </return-value>
-        <parameters>
-          <instance-parameter name="self" transfer-ownership="none">
-            <type name="LockscreenManager" c:type="PhoshLockscreenManager*"/>
-          </instance-parameter>
-        </parameters>
-      </method>
       <method name="set_locked"
               c:identifier="phosh_lockscreen_manager_set_locked"
               glib:set-property="locked">
@@ -3570,21 +3259,6 @@ becomes idle or when invoked explicitly via phosh_lockscreen_manager_set_locked(
           </instance-parameter>
           <parameter name="page" transfer-ownership="none">
             <type name="LockscreenPage" c:type="PhoshLockscreenPage"/>
-          </parameter>
-        </parameters>
-      </method>
-      <method name="set_timeout"
-              c:identifier="phosh_lockscreen_manager_set_timeout">
-        <source-position filename="src/lockscreen-manager.h" line="28"/>
-        <return-value transfer-ownership="none">
-          <type name="none" c:type="void"/>
-        </return-value>
-        <parameters>
-          <instance-parameter name="self" transfer-ownership="none">
-            <type name="LockscreenManager" c:type="PhoshLockscreenManager*"/>
-          </instance-parameter>
-          <parameter name="timeout" transfer-ownership="none">
-            <type name="gint" c:type="int"/>
           </parameter>
         </parameters>
       </method>
@@ -4185,7 +3859,7 @@ taking screenshots.</doc>
            glib:type-struct="ShellClass">
       <doc xml:space="preserve"
            filename="src/shell.c"
-           line="105">The shell singleton
+           line="106">The shell singleton
 
 #PhoshShell is responsible for instantiating the GUI
 parts of the shell#PhoshTopPanel, #PhoshHome,… and the managers that
@@ -4203,12 +3877,12 @@ and coordinates between them.</doc>
       <function name="get_default" c:identifier="phosh_shell_get_default">
         <doc xml:space="preserve"
              filename="src/shell.c"
-             line="2152">Get the shell singleton</doc>
+             line="2153">Get the shell singleton</doc>
         <source-position filename="src/shell.h" line="41"/>
         <return-value transfer-ownership="none">
           <doc xml:space="preserve"
                filename="src/shell.c"
-               line="2157">The shell singleton</doc>
+               line="2158">The shell singleton</doc>
           <type name="Shell" c:type="PhoshShell*"/>
         </return-value>
       </function>
@@ -4244,14 +3918,14 @@ and coordinates between them.</doc>
         <return-value transfer-ownership="none">
           <doc xml:space="preserve"
                filename="src/shell.c"
-               line="2406">%TRUE if the shell is currently locked, otherwise %FALSE.</doc>
+               line="2407">%TRUE if the shell is currently locked, otherwise %FALSE.</doc>
           <type name="gboolean" c:type="gboolean"/>
         </return-value>
         <parameters>
           <instance-parameter name="self" transfer-ownership="none">
             <doc xml:space="preserve"
                  filename="src/shell.c"
-                 line="2404">The #PhoshShell singleton</doc>
+                 line="2405">The #PhoshShell singleton</doc>
             <type name="Shell" c:type="PhoshShell*"/>
           </instance-parameter>
         </parameters>
@@ -4260,19 +3934,19 @@ and coordinates between them.</doc>
               c:identifier="phosh_shell_get_lockscreen_manager">
         <doc xml:space="preserve"
              filename="src/shell.c"
-             line="1637">Get the lockscreen manager</doc>
+             line="1638">Get the lockscreen manager</doc>
         <source-position filename="src/shell.h" line="54"/>
         <return-value transfer-ownership="none">
           <doc xml:space="preserve"
                filename="src/shell.c"
-               line="1643">The lockscreen manager</doc>
+               line="1644">The lockscreen manager</doc>
           <type name="LockscreenManager" c:type="PhoshLockscreenManager*"/>
         </return-value>
         <parameters>
           <instance-parameter name="self" transfer-ownership="none">
             <doc xml:space="preserve"
                  filename="src/shell.c"
-                 line="1639">The shell singleton</doc>
+                 line="1640">The shell singleton</doc>
             <type name="Shell" c:type="PhoshShell*"/>
           </instance-parameter>
         </parameters>
@@ -4293,19 +3967,19 @@ and coordinates between them.</doc>
               c:identifier="phosh_shell_get_screenshot_manager">
         <doc xml:space="preserve"
              filename="src/shell.c"
-             line="1757">Get the screenshot manager</doc>
+             line="1758">Get the screenshot manager</doc>
         <source-position filename="src/shell.h" line="55"/>
         <return-value transfer-ownership="none">
           <doc xml:space="preserve"
                filename="src/shell.c"
-               line="1763">The screenshot manager</doc>
+               line="1764">The screenshot manager</doc>
           <type name="ScreenshotManager" c:type="PhoshScreenshotManager*"/>
         </return-value>
         <parameters>
           <instance-parameter name="self" transfer-ownership="none">
             <doc xml:space="preserve"
                  filename="src/shell.c"
-                 line="1759">The shell singleton</doc>
+                 line="1760">The shell singleton</doc>
             <type name="Shell" c:type="PhoshShell*"/>
           </instance-parameter>
         </parameters>
@@ -4314,7 +3988,7 @@ and coordinates between them.</doc>
               c:identifier="phosh_shell_get_usable_area">
         <doc xml:space="preserve"
              filename="src/shell.c"
-             line="2052">Gives the usable area in pixels usable by a client on the primary
+             line="2053">Gives the usable area in pixels usable by a client on the primary
 display.</doc>
         <source-position filename="src/shell.h" line="45"/>
         <return-value transfer-ownership="none">
@@ -4324,7 +3998,7 @@ display.</doc>
           <instance-parameter name="self" transfer-ownership="none">
             <doc xml:space="preserve"
                  filename="src/shell.c"
-                 line="2054">The shell</doc>
+                 line="2055">The shell</doc>
             <type name="Shell" c:type="PhoshShell*"/>
           </instance-parameter>
           <parameter name="x"
@@ -4334,7 +4008,7 @@ display.</doc>
                      nullable="1">
             <doc xml:space="preserve"
                  filename="src/shell.c"
-                 line="2055">The x coordinate where client usable area starts</doc>
+                 line="2056">The x coordinate where client usable area starts</doc>
             <type name="gint" c:type="int*"/>
           </parameter>
           <parameter name="y"
@@ -4344,7 +4018,7 @@ display.</doc>
                      nullable="1">
             <doc xml:space="preserve"
                  filename="src/shell.c"
-                 line="2056">The y coordinate where client usable area starts</doc>
+                 line="2057">The y coordinate where client usable area starts</doc>
             <type name="gint" c:type="int*"/>
           </parameter>
           <parameter name="width"
@@ -4354,7 +4028,7 @@ display.</doc>
                      nullable="1">
             <doc xml:space="preserve"
                  filename="src/shell.c"
-                 line="2057">The width of the client usable area</doc>
+                 line="2058">The width of the client usable area</doc>
             <type name="gint" c:type="int*"/>
           </parameter>
           <parameter name="height"
@@ -4364,7 +4038,7 @@ display.</doc>
                      nullable="1">
             <doc xml:space="preserve"
                  filename="src/shell.c"
-                 line="2058">The height of the client usable area</doc>
+                 line="2059">The height of the client usable area</doc>
             <type name="gint" c:type="int*"/>
           </parameter>
         </parameters>
@@ -4372,7 +4046,7 @@ display.</doc>
       <method name="set_default" c:identifier="phosh_shell_set_default">
         <doc xml:space="preserve"
              filename="src/shell.c"
-             line="2135">Set the PhoshShell singleton that is returned by `phosh_shell_get_default()`</doc>
+             line="2136">Set the PhoshShell singleton that is returned by `phosh_shell_get_default()`</doc>
         <source-position filename="src/shell.h" line="40"/>
         <return-value transfer-ownership="none">
           <type name="none" c:type="void"/>
@@ -4381,7 +4055,7 @@ display.</doc>
           <instance-parameter name="self" transfer-ownership="none">
             <doc xml:space="preserve"
                  filename="src/shell.c"
-                 line="2137">The shell to use</doc>
+                 line="2138">The shell to use</doc>
             <type name="Shell" c:type="PhoshShell*"/>
           </instance-parameter>
         </parameters>
@@ -4392,7 +4066,7 @@ display.</doc>
                 transfer-ownership="none">
         <doc xml:space="preserve"
              filename="src/shell.c"
-             line="1237">The built in monitor. This is a hardware property and hence can
+             line="1238">The built in monitor. This is a hardware property and hence can
 only be read. It can be %NULL when not present or disabled.</doc>
         <type/>
       </property>
@@ -4402,7 +4076,7 @@ only be read. It can be %NULL when not present or disabled.</doc>
                 default-value="FALSE">
         <doc xml:space="preserve"
              filename="src/shell.c"
-             line="1226">Whether the device is currently docked. This mirrors the property
+             line="1227">Whether the device is currently docked. This mirrors the property
 from #PhoshDockedManager for easier access.</doc>
         <type name="gboolean" c:type="gboolean"/>
       </property>
@@ -4413,7 +4087,7 @@ from #PhoshDockedManager for easier access.</doc>
                 default-value="FALSE">
         <doc xml:space="preserve"
              filename="src/shell.c"
-             line="1216">Whether the screen is currently locked. This mirrors the property
+             line="1217">Whether the screen is currently locked. This mirrors the property
 from #PhoshLockscreenManager for easier access.</doc>
         <type name="gboolean" c:type="gboolean"/>
       </property>
@@ -4423,7 +4097,7 @@ from #PhoshLockscreenManager for easier access.</doc>
                 default-value="TRUE">
         <doc xml:space="preserve"
              filename="src/shell.c"
-             line="1273">Whether to display the `PhoshHome` (overview and home bar)</doc>
+             line="1274">Whether to display the `PhoshHome` (overview and home bar)</doc>
         <type name="gboolean" c:type="gboolean"/>
       </property>
       <property name="primary-monitor"
@@ -4433,7 +4107,7 @@ from #PhoshLockscreenManager for easier access.</doc>
                 transfer-ownership="none">
         <doc xml:space="preserve"
              filename="src/shell.c"
-             line="1249">The primary monitor that has the panels, lock screen etc.</doc>
+             line="1250">The primary monitor that has the panels, lock screen etc.</doc>
         <type/>
       </property>
       <property name="shell-state"
@@ -4443,7 +4117,7 @@ from #PhoshLockscreenManager for easier access.</doc>
                 default-value="PHOSH_STATE_NONE">
         <doc xml:space="preserve"
              filename="src/shell.c"
-             line="1260">The state of the shell (locked, modal dialog shown, …)</doc>
+             line="1261">The state of the shell (locked, modal dialog shown, …)</doc>
         <type/>
       </property>
       <field name="parent_instance">
@@ -4452,7 +4126,7 @@ from #PhoshLockscreenManager for easier access.</doc>
       <glib:signal name="ready" when="last" version="0.11.0">
         <doc xml:space="preserve"
              filename="src/shell.c"
-             line="1285">The ready signal is emitted once when the shell finished starting
+             line="1286">The ready signal is emitted once when the shell finished starting
 up.</doc>
         <return-value transfer-ownership="none">
           <type name="none" c:type="void"/>
